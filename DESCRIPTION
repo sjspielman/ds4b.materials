@@ -1,0 +1,28 @@
+Package: biol01301.apps
+Title: Shiny Apps For BIOL01301
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Spielman",
+           family = "Stephanie",
+           role = c("aut", "cre"),
+           email = "spielman@rowan.edu")
+Description: Provides the exercise apps used in BIOL01301
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.0.0
+Imports: 
+    dplyr (>= 1.0.0),
+    ggplot2 (>= 3.3.2),
+    forcats,
+    tidyr (>= 1.0.0),
+    tidyselect,
+    readr,
+    learnr,
+    stringr,
+    purrr,
+    glue,
+    magrittr,
+    shiny,
+    usethis
+URL: https://github.com/spielmanlab/biol01301.apps
