@@ -6,23 +6,27 @@ Authors@R:
            family = "Stephanie",
            role = c("aut", "cre"),
            email = "spielman@rowan.edu")
-Description: Provides the exercise apps and homeworks used in Data Science for Biologists
+Description: This package provides the exercise apps and homeworks used in Data Science for Biologists.
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.1.1
 Imports: 
-    dplyr (>= 1.0.0),
-    ggplot2 (>= 3.3.2),
-    forcats,
-    tidyr (>= 1.0.0),
-    tidyselect,
-    readr,
-    learnr,
     stringr,
-    purrr,
     glue,
     magrittr,
+    usethis,
+    here,
+    crayon,
+    rmarkdown,
+    rstudioapi,
     shiny,
-    usethis
-URL: https://github.com/spielmanlab/ds4b.materials
+    dplyr
+Collate:
+    utils.R
+    launch_exercises.R
+    launch_homework.R
+    check_homework.R
+URL: https://github.com/sjspielman/ds4b.materials
+License: MIT + file LICENSE
+StagedInstall: no

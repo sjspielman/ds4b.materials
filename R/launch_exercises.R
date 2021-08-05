@@ -1,8 +1,8 @@
-#' Run learnr module or shiyn app based on given argument
+#' Run learnr module or shiny app based on given argument
 #' 
 #' @param choice What to to run
 #' @returns invisible choice or FALSE if failed
-run_exercises <- function(choice = NULL)
+launch_exercises <- function(choice = NULL)
 {
   allowed <- c("data_figures",
                "types_of_figures",
@@ -35,13 +35,14 @@ run_exercises <- function(choice = NULL)
     learnr_file <- file.path(
       app_path, 
       dplyr::case_when(
-        choice == "data_figures" ~ "module_intro_data-figures.Rmd",
-        choice == "intro_R" ~ "module_intro_R.Rmd",
+        choice == "data_figures"  ~ "module_intro_data-figures.Rmd",
+        choice == "intro_R"       ~ "module_intro_R.Rmd",
         choice == "ggplot2_part1" ~ "module_intro_ggplot.Rmd",
-        choice == "dplyr_part1" ~ "module_intro_dplyr.Rmd"
+        choice == "dplyr_part1"   ~ "module_intro_dplyr.Rmd"
       )
     )
-    rmarkdown::run(learnr_file, render_args = list(quiet=TRUE))
+    rmarkdown::run(learnr_file, 
+                   render_args = list(quiet=TRUE))
     return(choice)
   }
 }
