@@ -1,3 +1,17 @@
+choice_message <- function() {
+  
+  cat('You need to specify what you would like to run. Options are:
+    - "data_figures"
+    - "types_of_figures"
+    - "intro_R"
+    - "ggplot2_part1"
+    - "dplyr_part1"
+    
+If you think are getting this message in error, you might have a typo or used the wrong case!'
+  )  
+}
+
+
 #' Run learnr module or shiny app based on given argument
 #' 
 #' @param choice What to to run
@@ -9,19 +23,18 @@ launch_exercises <- function(choice = NULL)
                "intro_R",
                "ggplot2_part1",
                "dplyr_part1")
-  if (is.null(choice) | !(choice %in% allowed))
+  if (is.null(choice))
   {
-    cat("\n You need to specify what you'd like to run. Options include:\n\n
-    - 'data_figures'
-    - 'types_of_figures'
-    - 'intro_R'
-    - 'ggplot2_part1'
-    - 'dplyr_part1'
-    
-    If you think are getting this message in error, you might have a typo or used the wrong case!")
-    return (FALSE)
+    choice_message()
+    return (invisible(FALSE))
   } else {
-    message("The module is lauching!")
+    if(!(choice %in% allowed))
+    {
+      choice_message()
+      return (invisible(FALSE))
+    }
+    message(crayon::green(
+      crayon::bold("The module is lauching! Give it a minute...")))
 
     # A real shiny app
     if (choice == "types_of_figures")
@@ -41,9 +54,11 @@ launch_exercises <- function(choice = NULL)
         choice == "dplyr_part1"   ~ "module_intro_dplyr.Rmd"
       )
     )
+    rmarkdown::shiny_prerendered_clean(learnr_file)
     rmarkdown::run(learnr_file, 
                    render_args = list(quiet=TRUE))
-    return(choice)
+    
+    return(invisible(choice))
   }
 }
    

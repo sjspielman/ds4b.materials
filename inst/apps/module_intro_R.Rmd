@@ -3,7 +3,6 @@ title: "Exercises: Introduction to R"
 author: "Data Science for Biologists, Fall 2021"
 output: 
   learnr::tutorial:
-    theme: lumen
     css: css/custom-css.css
     toc: true
     toc_float: true
