@@ -4,8 +4,8 @@ choice_message <- function() {
     - "data_figures"
     - "types_of_figures"
     - "intro_R"
-    - "ggplot2_part1"
-    - "dplyr_part1"
+    - "ggplot2"
+    - "dplyr"
     
 If you think are getting this message in error, you might have a typo or used the wrong case!'
   )  
@@ -21,8 +21,8 @@ launch_exercises <- function(choice = NULL)
   allowed <- c("data_figures",
                "types_of_figures",
                "intro_R",
-               "ggplot2_part1",
-               "dplyr_part1")
+               "ggplot2",
+               "dplyr")
   if (is.null(choice))
   {
     choice_message()
@@ -42,22 +42,22 @@ launch_exercises <- function(choice = NULL)
       shiny::runApp(
         file.path(app_path, "types_of_plots")
       )
-      return (choice)
-    } 
-    # Learnr
-    learnr_file <- file.path(
-      app_path, 
-      dplyr::case_when(
-        choice == "data_figures"  ~ "module_intro_data-figures.Rmd",
-        choice == "intro_R"       ~ "module_intro_R.Rmd",
-        choice == "ggplot2_part1" ~ "module_intro_ggplot.Rmd",
-        choice == "dplyr_part1"   ~ "module_intro_dplyr.Rmd"
+    } else {
+      # Learnr
+      learnr_file <- file.path(
+        app_path, 
+        dplyr::case_when(
+          choice == "data_figures"  ~ "module_intro_data-figures.Rmd",
+          choice == "intro_R"       ~ "module_intro_R.Rmd",
+          choice == "ggplot2"       ~ "module_intro_ggplot.Rmd",
+          choice == "dplyr"         ~ "module_intro_dplyr.Rmd"
+        )
       )
-    )
+
     rmarkdown::shiny_prerendered_clean(learnr_file)
     rmarkdown::run(learnr_file, 
                    render_args = list(quiet=TRUE))
-    
+    }
     return(invisible(choice))
   }
 }
