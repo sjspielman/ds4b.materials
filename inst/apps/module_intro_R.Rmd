@@ -233,7 +233,7 @@ banana_price * num_bananas
 
 <div class = "prompt">You're sick of bananas - time to buy some [persimmons](https://en.wikipedia.org/wiki/Persimmon). These are more expensive at \$2.75 a piece. You want to buy 10 persimmons. How much will it cost you?</div>
 
-+ Again, perform all calculations with variables. This math is easy enough to do in your head, but you must use code!! 
++ Again, perform all calculations with variables: You need to multiply the number of persimmons (10) by the cost (2.75). This math is easy enough to do in your head, but you must use code!! 
                                                   
 ```{r variables_q5, exercise = TRUE}
 

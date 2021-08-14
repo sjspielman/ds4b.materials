@@ -1,0 +1,6 @@
+/* flipbookr bug if you provide this in Rmd chunk */
+
+.remark-code{
+  line-height: 1.25; 
+  font-size: 70%
+}
