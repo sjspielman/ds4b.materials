@@ -1,10 +1,11 @@
-exercise_choice_message <- function() {
+app_choice_message <- function() {
   
-  cat('You need to specify what exercise you would like to run. Options are:
+  cat('You need to specify what app you would like to run. Options are:
     - "data_figures"
     - "types_of_figures"
     - "intro_R"
     - "ggplot2"
+    - "line_by_line"
     - "dplyr"
     
 If you think are getting this message in error, you might have a typo or used the wrong case!'
@@ -17,7 +18,7 @@ If you think are getting this message in error, you might have a typo or used th
 #' 
 #' @param choice What to to run
 #' @returns invisible choice or FALSE if failed
-launch_exercises <- function(choice = NULL)
+launch_app <- function(choice = NULL)
 {
   allowed <- c("data_figures",
                "types_of_figures",

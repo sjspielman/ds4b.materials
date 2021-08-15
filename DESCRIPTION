@@ -12,6 +12,9 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
+    ggplot2 (>= 0.3.5),
+    tidyr (>= 1.0.0),
+    dplyr (>= 1.0.0),
     stringr,
     glue,
     magrittr,
@@ -20,11 +23,13 @@ Imports:
     crayon,
     rmarkdown,
     rstudioapi,
-    shiny,
-    dplyr
+    xaringan (>= 0.22),
+    flipbookr (>= 0.1.0),
+    shiny (>= 1.5.0)
 Collate:
     utils.R
-    launch_exercises.R
+    launch_app.R
+    launch_activity.R
     launch_homework.R
     check_homework.R
 URL: https://github.com/sjspielman/ds4b.materials
