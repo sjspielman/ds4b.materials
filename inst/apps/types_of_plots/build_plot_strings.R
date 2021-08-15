@@ -314,3 +314,25 @@ build_density_string <- function(args)
        "faceted" = faceted)
   
 }
+
+
+
+
+build_line_string <- function(args)
+{
+  glue::glue(
+"# Data is first modified to be the mean bill length per species, per year, and then plotted:
+penguins %>%
+   group_by(species, year) %>%
+   summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) %>%
+   ungroup() %>%
+   # Now, plot the mean bill lengths over time:
+   ggplot(aes(x = year,
+              y = mean_bill_length,
+              color = species,
+              group = species)) +
+     geom_point(size = {args$point_size}) +
+     geom_line(size = {args$line_size}) +
+     labs(title = 'Line plot of mean bill length over time, shown separately for each species.')"
+  )
+}

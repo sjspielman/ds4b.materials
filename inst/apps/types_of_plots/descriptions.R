@@ -116,6 +116,13 @@ scatter_dataviz <- tagList(
   br()
 )
 
+lineplot_dataviz <- tagList(
+  br(),
+  tags$blockquote(
+    "Line plots are introduced in", a("Chapter 13 of", tags$em("Fundamentals of Data Visualization"), href = "https://clauswilke.com/dataviz/time-series.html")
+  ),
+  br()
+)
 
 ## Histogram text -------------------------------------------------------------
 histogram_text <- shiny::tagList(
@@ -138,7 +145,7 @@ histogram_text <- shiny::tagList(
 boxplot_text <- tagList(
   p("Boxplots are very commonly used to compare multiple distributions to one another, specifically to visualize how the distribution of a given numeric variable varies across categories of another discrete variable. Also known as box-and-whisker plots, these plots essentially 'collapse' a distribution into a", tags$b("five-number summary"), "of the data: the minimum value, the first and third quartiles, the median, and the maximum value. The area inside the box represents the", tags$b("interquartile range (IQR)"), "which contains the middle 50% of the data. In other words, if there are 30 points in a dataset, the IQR shows the range of the middle 15 (half of 30) values. The line in the middle of the box represents the data's", tags$b("median"), "value, and the length of the vertical lines ('whiskers') represents the minimum and maximum values...usually. Sometimes a dataset has outliers (values that lie exceedingly far from the median - there many different ways outliers are determined!). Outliers are represented as small points above the 'maximum' and below the 'minimum' whiskers.", tags$b(tags$em("Luckily, the computer will calculate and draw all of this for you!"))),
   br(),
-  tags$img(src = "img/boxplot.png", width = "60%"),
+  tags$img(src = "img/boxplot.png", width = "30%"),
   br(),
   p("Boxplots are very useful for getting an overall sense of data range, median, and distribution symmetry, but there is a lot of information that these plots inherently cannot tell us. For example, you cannot tell the modality of a distribution (unimodal, bimodal, etc.) from a boxplot, and it can be challenging to get a true sense of data skew from a boxplot. In fact, one reason boxplots were popularized is because they provided quick ways to draw a whole bunch of numbers by hand, before computers could help us with our data visualizations.")
 )
@@ -173,7 +180,7 @@ sina_text <- tagList(
 barplot_text <- tagList(
   p("Barplots are a very commonly used dataviz where the height of each bar represents a particular value. One of their most important uses is visualizing the number of observations in a discrete or categorical variable: The x-axis will show the different categories, and the y-axis bar will represent how many observations are in that category. Barplots are therefore similar to histograms but with the key (somewhat pendantic but also important!) distinction: Histograms specifically show binned distributions of a continuous numeric variable. For a categorical or discrete numeric variable, there is no need for binning (no decimals!), so the x-axis can truly have a tick mark for each value in the x-axis variable."),
   br(),
-  p("It is very common, particular in biomedical sciences, to use barplots to summarize distributions of numeric data by plotting mean and error bars: While a popular choice, this form of data visualization cannot at all convey the underlying distribution of the data. Below is an example of such a barplot: The height of each bar represents the mean flipper length for each penguin species, and the total length of each error bar represents that distribution's standard deviation (but other versions of this plot might display a different type of error bar that isn;t standard deviation - always check the figure caption or axis label to be sure!). In essense, this type of barplot is just a fancy way to state two numbers. This type of plot is useful if your visualization goal is only to compare means and error, but if you want to explore any other aspects of the data, this type of plot will be more or less, in this author's opinion, useless.")
+  p("It is very common, particular in biomedical sciences, to use barplots to summarize distributions of numeric data by plotting mean and error bars: While a popular choice, this form of data visualization cannot at all convey the underlying distribution of the data. In essense, this type of barplot is just a fancy way to state two numbers: mean and spread. If you want to explore any other aspects of the data beyond just mean and spread (usually, you do.), this type of plot will be more or less, in this author's opinion, useless.")
   
 )
 
@@ -185,4 +192,10 @@ scatter_text <- tagList(
   p("When interpreting a line-of-best fit, focus on the slope. If the slope is positive, the relationship between x/y is also positive - when x increases, y increases. By contrast, if the slope is negative, when x increases, y decreases, and vice versa. Importantly, if the line is flat, or it is possible to draw a completely flat line within the 95% CI shaded area, this means the slope cannot be statistically distinguished from 0. A slope of 0 represents no relationship between x and y. The", tags$b("strength of the association"), "between x and y also depends on how much noise is in the plot. The closer all points are to the regression line, the stronger the relationship is. If points are very spread out diffusely around the regression line, any potential x/y relationship is weaker."),
   p("It is important to be aware that just because you can draw a linear regression line doesn't mean the data truly are related linearly. The computer will calculate whatever you ask it you, but it is up to YOU to decide whether those calculations are reasonable in the first place. It is therefore critical to look at the plot for yourself (yes, there is lots of subjectivity in statistics!) to determine whether drawing a straight line through the points (as opposed to a curve of some kind) makes sense."),
   p("Finally, you might notice something odd about the regression lines -  for many combinations of x/y variables, the line has a negative slope when we consider a single regression line for the entire dataset, but when we show a separate regression line for each category of a discrete variable, we see positive slopes (or vice versa)! What causes this change, and is the relationship positive or negative? This is a phenomenon known as", a(tags$b("Simpson's paradox"), href = "https://en.wikipedia.org/wiki/Simpson%27s_paradox"), "which states that trends in a dataset can change when you consider different groups at a time. This paradox highlights the absolute importance of always making sure you consider the ways in which natural groupings in the data affect your conclusions about data trends. When modeling with linear regression, it is very important to take natural groupings into account - ignoring groupings within the data can end up misleading your whole statistical adventure.")
+)
+
+
+## line text ----------------------------------------------
+lineplot_text <- tagList(
+  p("Line plots are used to visualize data over time. Generally, the x-axis will correspond to time, and the y-axis will show how a given measurement changes across time.")
 )

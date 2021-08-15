@@ -18,6 +18,17 @@ jitter_choices <- c("Jitter", "No jitter")
 regression_choices <- c("Yes", "No")
 
 
+display_top <- function(dataviz, text) {
+  shiny::tagList(
+    dataviz,
+    shiny::fluidRow(
+      shinydashboard::box(text, width = 12)
+    ),
+    shiny::h3("Explore:"),
+  )
+}
+
+
 
 # Not working for reasons I fail to understand today. Maybe another day I'll see the issue.
 # theme_custom <- function()

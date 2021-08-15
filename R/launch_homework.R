@@ -4,7 +4,7 @@
 #' @returns invisible number
 launch_homework <- function(number = NULL)
 {
-  allowed <- c(0,2:11)
+  allowed <- c(2, 4:11)
   script_hws <- c(2)
   
   # Ugh....
