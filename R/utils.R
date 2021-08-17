@@ -32,6 +32,9 @@ NULL
 #' Path to apps
 app_path <- system.file("apps", package = "ds4b.materials")
 
+#' Path to learnr
+learnr_path <- system.file("learnr", package = "ds4b.materials")
+
 #' Path to activities
 activity_path <- system.file("inclass", package = "ds4b.materials")
 

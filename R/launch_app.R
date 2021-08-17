@@ -51,7 +51,7 @@ launch_app <- function(choice = NULL)
     } else {
       # Learnr
       learnr_file <- file.path(
-        app_path, 
+        learnr_path, 
         dplyr::case_when(
           choice == "data_figures"  ~ "module_intro_data-figures.Rmd",
           choice == "intro_R"       ~ "module_intro_R.Rmd",
