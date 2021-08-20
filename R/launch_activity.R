@@ -1,3 +1,5 @@
+#' Message for what activities they can choose
+#' @export
 activity_choice_message <- function() {
   
   cat('You need to specify what activity you would like to run. Options are:

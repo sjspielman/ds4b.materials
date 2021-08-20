@@ -59,21 +59,26 @@ launch_homework <- function(number = NULL)
 
 
 
-
+#' Download a HW
+#' @export
 download_homework <- function(hwpath, hwurl)
 {
   setwd(hwpath)
   utils::download.file(hwurl, destfile = "tempzip", quiet=T)
   utils::unzip("tempzip")
   file.remove("tempzip")
+  setwd(here::here())
 }
 
+#' Open a HW
+#' @export
 open_homework <- function(hwpath, hwfile)
 {
-  setwd(hwpath)
   rstudioapi::navigateToFile(hwfile)
 }
 
+#' Message a bad HW
+#' @export
 bad_homework_message <- function()
 {
   cat("\nYou need to provide an appropriate argument for which homework to launch or check. Arguments can be any number 2-11. For example...

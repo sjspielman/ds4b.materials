@@ -1,3 +1,5 @@
+#' Message for what apps they can choose
+#' @export
 app_choice_message <- function() {
   
   cat('You need to specify what app you would like to run. Options are:
