@@ -31,12 +31,12 @@ launch_app <- function(choice = NULL)
                "dplyr")
   if (is.null(choice))
   {
-    exercise_choice_message()
+    app_choice_message()
     return (invisible(FALSE))
   } else {
     if(!(choice %in% allowed))
     {
-      exercise_choice_message()
+      app_choice_message()
       return (invisible(FALSE))
     }
     message(crayon::green(
