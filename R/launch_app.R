@@ -4,10 +4,10 @@ app_choice_message <- function() {
   
   cat('You need to specify what app you would like to run. Options are:
     - "data_figures"
-    - "types_of_figures"
+    - "types_of_plots"
+    - "line_by_line"
     - "intro_R"
     - "ggplot2"
-    - "line_by_line"
     - "dplyr"
     
 If you think are getting this message in error, you might have a typo or used the wrong case!'
@@ -24,10 +24,10 @@ If you think are getting this message in error, you might have a typo or used th
 launch_app <- function(choice = NULL)
 {
   allowed <- c("data_figures",
-               "types_of_figures",
+               "types_of_plots",
+               "line_by_line",
                "intro_R",
                "ggplot2",
-               "line_by_line",
                "dplyr")
   if (is.null(choice))
   {

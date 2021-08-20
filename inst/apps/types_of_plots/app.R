@@ -6,6 +6,7 @@ library(ggplot2)
 library(tidyr)
 library(dplyr)
 library(glue)
+library(DT)
 
 source("utils.R")
 source("descriptions.R")
