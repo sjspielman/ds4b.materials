@@ -13,6 +13,7 @@ If you think are getting this message in error, you might have a typo or used th
 #' 
 #' @param choice What to to run
 #' @returns invisible choice or FALSE if failed
+#' @export
 launch_activity <- function(choice = NULL)
 {
   allowed <- c("rmarkdown")

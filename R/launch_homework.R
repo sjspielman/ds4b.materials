@@ -2,6 +2,7 @@
 #' 
 #' @param number The number homework we're on
 #' @returns invisible number
+#' @export
 launch_homework <- function(number = NULL)
 {
   allowed <- c(2, 4:11)

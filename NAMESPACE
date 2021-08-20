@@ -2,5 +2,9 @@
 
 export("%+%")
 export("%>%")
+export(check_homework)
+export(launch_activity)
+export(launch_app)
+export(launch_homework)
 importFrom(crayon,"%+%")
 importFrom(magrittr,"%>%")
