@@ -1,6 +1,6 @@
 ---
 title: "Introduction to data wrangling with `dplyr`"
-author: "Data Science for Biologists, Fall 2021"
+author: "Data Science for Biologists"
 output: 
   learnr::tutorial:
     css: css/custom-css.css

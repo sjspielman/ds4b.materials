@@ -1,6 +1,6 @@
 ---
 title: "Exercises: Introduction to R"
-author: "Data Science for Biologists, Fall 2021"
+author: "Data Science for Biologists"
 output: 
   learnr::tutorial:
     css: css/custom-css.css

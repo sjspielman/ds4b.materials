@@ -1,6 +1,6 @@
 ---
 title: "Introduction to data types and figures"
-author: "Data Science for Biologists, Spring 2021"
+author: "Data Science for Biologists"
 output: 
   learnr::tutorial:
     theme: united
@@ -94,9 +94,6 @@ elements <- tibble::tribble(
 
 theme_set(theme_grey() + theme(axis.text = element_text(size = 10)))
 ```
-
-# Data Science for Biologists, Spring 2021
-<br><br><br>
 
 ## Part 1: Identifying data types
 <br>
