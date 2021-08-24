@@ -29,6 +29,8 @@ Imports:
     shinydashboard,
     shinyWidgets,
     palmerpenguins,
+    learnr,
+    DT
 Collate:
     utils.R
     launch_app.R
