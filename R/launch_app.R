@@ -43,10 +43,9 @@ launch_app <- function(choice = NULL)
       crayon::bold("The module is lauching! Give it a minute...")))
     
     # A real shiny app
-    if (choice == "types_of_figures") {
-      shiny::runApp(
-        file.path(app_path, "types_of_plots")
-      )
+    if (choice == "types_of_plots") {
+      # this only works if printed, and I'm not going to question it *shrug*
+      print( types.of.plots::run_app() )
     } else if (choice == "line_by_line") {
       shiny::runApp(
         file.path(app_path, "line_by_line")

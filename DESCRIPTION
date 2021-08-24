@@ -30,7 +30,8 @@ Imports:
     shinyWidgets,
     palmerpenguins,
     learnr,
-    DT
+    DT,
+    types.of.plots
 Collate:
     utils.R
     launch_app.R
@@ -38,5 +39,7 @@ Collate:
     launch_homework.R
     check_homework.R
 URL: https://github.com/sjspielman/ds4b.materials
+Remotes:
+    sjspielman/types.of.plots
 License: MIT + file LICENSE
 StagedInstall: no
