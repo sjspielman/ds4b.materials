@@ -24,7 +24,7 @@ launch_homework <- function(number = NULL)
   
   # Define
   homework_name <- glue::glue("hw{number}") 
-  homework_path <- file.path(here::here(), "homeworks", homework_name)
+  homework_path <- file.path(here::here(), "homeworks")
   
   homework_filename <- glue::glue("{homework_name}_template.Rmd")
   if (number %in% script_hws)  homework_filename <- gsub(".Rmd$", ".R", homework_filename) 
@@ -33,23 +33,16 @@ launch_homework <- function(number = NULL)
     "https://raw.githubusercontent.com/sjspielman/datascience_for_biologists/master/docs/homeworks/{homework_name}/{homework_filename}"
   )
 
-  # If HW path and HW exist, just open the HW
-  if (dir.exists(homework_path)) {
-    if (file.exists(file.path(homework_path, homework_filename))) {
-      message(
-        glue::glue(
-          stringr::str_wrap(
-          "\nIt looks like you have already launched Homework {number}. I'll just open it for you.", width = 60)
-        )
+  # If HW exists, just open the HW
+  if (file.exists(file.path(homework_path, homework_filename))) {
+    message(
+      glue::glue(
+        stringr::str_wrap(
+        "\nIt looks like you have already launched Homework {number}. I'll just open it for you.", width = 60)
       )
-      open_homework(homework_path, homework_filename)
-    } else {
-      download_homework(homework_path, homework_filename, homework_raw_url)
-      open_homework(homework_path, homework_filename)
-      message("Enjoy!")
-    }
+    )
+    open_homework(homework_path, homework_filename)
   } else {
-    dir.create(homework_path)
     download_homework(homework_path, homework_filename, homework_raw_url)
     open_homework(homework_path, homework_filename)
     message("Enjoy!")
@@ -69,7 +62,7 @@ download_homework <- function(hwpath, hwfile, hwurl) {
 #' Open a HW
 #' @export
 open_homework <- function(hwpath, hwfile) {
-  rstudioapi::navigateToFile(hwfile)
+  rstudioapi::navigateToFile(file.path(hwpath, hwfile))
 }
 
 #' Message a bad HW
