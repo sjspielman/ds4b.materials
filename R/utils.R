@@ -70,6 +70,7 @@ This means your current environment will be DELETED.\n\n") %+%
     return (invisible(FALSE))
   }
 
+  remotes::install_github("sjspielman/types.of.plots", force = TRUE, quiet = TRUE)
   remotes::install_github("sjspielman/ds4b.materials", force = TRUE, quiet = TRUE)
   remotes::install_github("spielmanlab/introverse", force = TRUE, quiet = TRUE)
   cat("\n\n" %+%

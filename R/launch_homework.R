@@ -28,7 +28,7 @@ launch_homework <- function(number = NULL)
   
   homework_filename <- glue::glue("{homework_name}_template.Rmd")
   if (number %in% script_hws)  homework_filename <- gsub(".Rmd$", ".R", homework_filename) 
-  ### TODO: THIS MAY ALSO NEED TO BE 
+
   homework_raw_url <- glue::glue(
     "https://raw.githubusercontent.com/sjspielman/datascience_for_biologists/master/docs/homeworks/{homework_name}/{homework_filename}"
   )
@@ -44,13 +44,13 @@ launch_homework <- function(number = NULL)
       )
       open_homework(homework_path, homework_filename)
     } else {
-      download_homework(homework_path, homework_raw_url)
+      download_homework(homework_raw_url, homework_path, homework_filename)
       open_homework(homework_path, homework_filename)
       message("Enjoy!")
     }
   } else {
     dir.create(homework_path)
-    download_homework(homework_path, homework_raw_url)
+    download_homework(homework_raw_url, homework_path, homework_filename)
     open_homework(homework_path, homework_filename)
     message("Enjoy!")
   }
@@ -61,26 +61,19 @@ launch_homework <- function(number = NULL)
 
 #' Download a HW
 #' @export
-download_homework <- function(hwpath, hwurl)
-{
-  setwd(hwpath)
-  utils::download.file(hwurl, destfile = "tempzip", quiet=T)
-  utils::unzip("tempzip")
-  file.remove("tempzip")
-  setwd(here::here())
+download_homework <- function(hwpath, hwfile, hwurl) {
+  utils::download.file(hwurl, quiet=TRUE, destfile = file.path(hwpath, hwfile) )
 }
 
 #' Open a HW
 #' @export
-open_homework <- function(hwpath, hwfile)
-{
+open_homework <- function(hwpath, hwfile) {
   rstudioapi::navigateToFile(hwfile)
 }
 
 #' Message a bad HW
 #' @export
-bad_homework_message <- function()
-{
+bad_homework_message <- function() {
   cat("\nYou need to provide an appropriate argument for which homework to launch or check. Arguments can be any number 2-11. For example...
           
 To launch homework #4, you would run:   " %+%
