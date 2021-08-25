@@ -44,13 +44,13 @@ launch_homework <- function(number = NULL)
       )
       open_homework(homework_path, homework_filename)
     } else {
-      download_homework(homework_raw_url, homework_path, homework_filename)
+      download_homework(homework_path, homework_filename, homework_raw_url)
       open_homework(homework_path, homework_filename)
       message("Enjoy!")
     }
   } else {
     dir.create(homework_path)
-    download_homework(homework_raw_url, homework_path, homework_filename)
+    download_homework(homework_path, homework_filename, homework_raw_url)
     open_homework(homework_path, homework_filename)
     message("Enjoy!")
   }
@@ -64,6 +64,7 @@ launch_homework <- function(number = NULL)
 download_homework <- function(hwpath, hwfile, hwurl) {
   utils::download.file(hwurl, quiet=TRUE, destfile = file.path(hwpath, hwfile) )
 }
+
 
 #' Open a HW
 #' @export
