@@ -4,7 +4,6 @@
 #' @name %+%
 #' @rdname crayon-pipe
 #' @keywords internal
-#' @export
 #' @importFrom crayon %+%
 #' @usage lhs \%+\% rhs
 #' @param lhs crayonable string
@@ -20,7 +19,6 @@ NULL
 #' @name %>%
 #' @rdname pipe
 #' @keywords internal
-#' @export
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
 #' @param lhs A value or the magrittr placeholder.
@@ -42,6 +40,7 @@ activity_path <- system.file("inclass", package = "ds4b.materials")
 #' Update materials
 #' 
 #' Forces updates to introverse and ds4b.materials packages
+#' @export
 update_materials <- function(){
   cat(
     crayon::bold(
