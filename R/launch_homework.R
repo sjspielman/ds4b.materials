@@ -30,7 +30,7 @@ launch_homework <- function(number = NULL)
   if (number %in% script_hws)  homework_filename <- gsub(".Rmd$", ".R", homework_filename) 
   ### TODO: THIS MAY ALSO NEED TO BE 
   homework_raw_url <- glue::glue(
-    "https://raw.githubusercontent.com/sjspielman/datascience_for_biologists/master/docs/homeworks/{homework_name}/raw_{homework_name}.zip"
+    "https://raw.githubusercontent.com/sjspielman/datascience_for_biologists/master/docs/homeworks/{homework_name}/{homework_filename}"
   )
 
   # If HW path and HW exist, just open the HW
