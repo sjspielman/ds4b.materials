@@ -5,7 +5,7 @@
 #' @export
 check_homework <- function(number = NULL)
 {
-  allowed <- c(0,2:11)
+  allowed <- c(2:3, 5:11)
   script_hws <- c(2)
   
   # Ugh....
@@ -22,7 +22,6 @@ check_homework <- function(number = NULL)
     } 
   }
   homework_filename <- file.path(here::here(), "homeworks", 
-                                 glue::glue("hw{number}"),
                                  glue::glue("hw{number}_template.Rmd"))
   if (number %in% script_hws)  homework_filename <- gsub(".Rmd$", ".R", homework_filename) 
   
@@ -42,7 +41,7 @@ check_homework <- function(number = NULL)
     error = function(e)
     {
       stop(
-        stringr::str_wrap("\n\nUH-OH, ERRORS DETECTED! Make sure to test your code in a clean environment.", width = 60)
+        stringr::str_wrap("\n\n\n\nERRORS DETECTED! Make sure to test your code in a clean environment.", width = 60)
       )
     }
   )
