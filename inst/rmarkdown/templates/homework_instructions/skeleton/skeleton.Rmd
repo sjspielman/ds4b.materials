@@ -1,0 +1,18 @@
+---
+title: 'Instructions: Homework #'
+author: "Data Science for Biologists, Fall 2021"
+date: "Complete the template Rmd and submit to Canvas on XXX by 1 PM"
+output: 
+  html_document:
+    theme: lumen
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load any libraries here:
+library(tidyverse)
+library(introverse)
+```
+
