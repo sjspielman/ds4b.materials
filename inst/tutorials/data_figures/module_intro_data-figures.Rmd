@@ -3,7 +3,11 @@ title: "Introduction to data types and figures"
 author: "Data Science for Biologists"
 output: 
   learnr::tutorial:
-    theme: united
+    css: css/custom-css.css
+    toc: true
+    toc_float: true
+    progressive: true
+    allow_skip: true
 runtime: shiny_prerendered
 editor_options: 
   chunk_output_type: console

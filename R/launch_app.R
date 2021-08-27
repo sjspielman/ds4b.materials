@@ -10,7 +10,7 @@ app_choice_message <- function() {
     - "ggplot2"
     - "dplyr"
     
-If you think are getting this message in error, you might have a typo or used the wrong case!'
+If you think are getting this message in error, you might have a typo or used the wrong case!\n\n'
   )  
 }
 
@@ -52,19 +52,7 @@ launch_app <- function(choice = NULL)
       )
     } else {
       # Learnr
-      learnr_file <- file.path(
-        learnr_path, 
-        dplyr::case_when(
-          choice == "data_figures"  ~ "module_intro_data-figures.Rmd",
-          choice == "intro_R"       ~ "module_intro_R.Rmd",
-          choice == "ggplot2"       ~ "module_intro_ggplot.Rmd",
-          choice == "dplyr"         ~ "module_intro_dplyr.Rmd"
-        )
-      )
-      
-      rmarkdown::shiny_prerendered_clean(learnr_file)
-      rmarkdown::run(learnr_file, 
-                     render_args = list(quiet=TRUE))
+      learnr::run_tutorial(choice, package = "ds4b.materials")
     }
     return(invisible(choice))
   }

@@ -327,7 +327,7 @@ ggplot(sparrows) +
 #### **ALERT!** 
 An *extremely common* bug/typo you can now look forward to doing for the rest of your life is accidentally placing a column *outside* of `aes()`. Here's an example of that bug. 
 
-```{r scatter_sidenote, exercise=TRUE}
+```{r scatter_sidenote, exercise=TRUE, error=TRUE}
 ggplot(sparrows) + 
   aes(x = Wingspread, y = Femur_Length) +  
   geom_point(color=Survival) 
