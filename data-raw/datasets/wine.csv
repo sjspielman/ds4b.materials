@@ -1,4 +1,4 @@
-Cultivar,Alcohol,MalicAcid,Ash,Magnesium,TotalPhenol,Flavanoids,NonflavPhenols,Color
+cultivar,alcohol,malic_acid,ash,magnesium,total_phenol,flavonoids,nonflav_phenol,color
 A,14.23,1.71,2.43,127,2.8,3.06,0.28,5.64
 A,13.2,1.78,2.14,100,2.65,2.76,0.26,4.38
 A,13.16,2.36,2.67,101,2.8,3.24,0.3,5.68
