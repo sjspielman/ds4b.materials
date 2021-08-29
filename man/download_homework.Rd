@@ -4,7 +4,7 @@
 \alias{download_homework}
 \title{Download a HW}
 \usage{
-download_homework(hwpath, hwurl)
+download_homework(hwpath, hwfile, hwurl)
 }
 \description{
 Download a HW

@@ -1,8 +1,9 @@
 #' Let them know if they have bugs - NOTHING FANCY!!
+#' Don't export though since not used Fall 2021
 #' 
 #' @param number The number homework we're on
 #' @returns invisible number
-#' @export
+#' @noRd
 check_homework <- function(number = NULL)
 {
   allowed <- c(2:3, 5:11)

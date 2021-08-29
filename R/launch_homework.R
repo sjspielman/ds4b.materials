@@ -1,8 +1,9 @@
-#' Create and populate a homework directory
+#' Download and/or open the homework assignment into homeworks/
 #' 
 #' @param number The number homework we're on
 #' @returns invisible number
 #' @export
+#' @noRd
 launch_homework <- function(number = NULL)
 {
   allowed <- c(2:3, 5:11)
@@ -68,13 +69,10 @@ open_homework <- function(hwpath, hwfile) {
 #' Message a bad HW
 #' @export
 bad_homework_message <- function() {
-  cat("\nYou need to provide an appropriate argument for which homework to launch or check. Arguments can be any number 2-11. For example...
+  cat("\nYou need to provide an appropriate argument for which homework to launch. The argument can be any number 2-3 or 5-11. For example...
           
-To launch homework #4, you would run:   " %+%
-  crayon::bold("launch_homework(4)")
-%+% "\nTo check homework #4, you would run:    " %+%
-  crayon::bold('check_homework(4)') 
-  )
+To launch homework #2, you would run:   " %+%
+  crayon::bold("launch_homework(2)"))
 }
 
 
