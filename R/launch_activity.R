@@ -33,12 +33,17 @@ launch_activity <- function(choice = NULL)
       crayon::bold("The activity is lauching!")))
     
     # Define
-    activity_name <- glue::glue("activity_{choice}") 
+    activity_name <- dplyr::case_when(
+      choice == "rmarkdown" ~ "demonstration_rmarkdown.Rmd",
+      TRUE ~ ""
+    )
+    if(activity_name == "") stop()
+    
     activity_path <- file.path(here::here(), "activities")
     final_activity_path <- file.path(activity_path, activity_name)
     
     activity_raw_url <- glue::glue(
-      "https://raw.githubusercontent.com/sjspielman/datascience_for_biologists/master/docs/inclass/{activity_name}.zip"
+      "https://raw.githubusercontent.com/sjspielman/datascience_for_biologists/master/docs/inclass/{activity_name}"
     )
     
     # If HW path and HW exist, just open the HW
@@ -49,10 +54,10 @@ launch_activity <- function(choice = NULL)
             "\nIt looks like you have already launched this activity. I'll just open it for you.", width = 60)
         )
       )
-      rstudioapi::filesPaneNavigate(final_activity_path)
+      open_thing(final_activity_path)
     } else {
-      download_homework(activity_name, activity_raw_url)
-      rstudioapi::filesPaneNavigate(final_activity_path)
+      download_thing(activity_path, activity_name, activity_raw_url)
+      open_thing(final_activity_path)
     }
     return (invisible(choice))
   }

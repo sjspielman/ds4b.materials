@@ -13,13 +13,13 @@ launch_homework <- function(number = NULL)
   if (is.null(number)) 
   {
     bad_homework_message()
-    return(FALSE)
+    return(invisible(FALSE))
   } else {
     number <- as.numeric(number)
     if (!(number %in% allowed))
     {
       bad_homework_message()
-      return(FALSE)
+      return(invisible(FALSE))
     } 
   }
   
@@ -42,10 +42,17 @@ launch_homework <- function(number = NULL)
         "\nIt looks like you have already launched Homework {number}. I'll just open it for you.", width = 60)
       )
     )
-    open_homework(homework_path, homework_filename)
+    open_thing( file.path(homework_path, homework_filename) )
   } else {
-    download_homework(homework_path, homework_filename, homework_raw_url)
-    open_homework(homework_path, homework_filename)
+    
+    # Can it be downloaded?
+    if (RCurl::url.exists(homework_raw_url) == FALSE) {
+      message(
+        stringr::str_wrap("\n\nSorry, this homework isn't yet ready for downloading. If you think this is incorrect and the homework should be available, reach out to Dr. Spielman for help!", 55))
+      return(invisible(FALSE))
+    }
+    download_thing(homework_path, homework_filename, homework_raw_url)
+    open_thing( file.path(homework_path, homework_filename) )
     message("Enjoy!")
   }
   return (invisible(number))
@@ -55,15 +62,15 @@ launch_homework <- function(number = NULL)
 
 #' Download a HW
 #' @export
-download_homework <- function(hwpath, hwfile, hwurl) {
-  utils::download.file(hwurl, quiet=TRUE, destfile = file.path(hwpath, hwfile) )
+download_thing <- function(path, file, url) {
+  utils::download.file(url, quiet=TRUE, destfile = file.path(path, file) )
 }
 
 
 #' Open a HW
 #' @export
-open_homework <- function(hwpath, hwfile) {
-  rstudioapi::navigateToFile(file.path(hwpath, hwfile))
+open_thing <- function(file) {
+  rstudioapi::navigateToFile(file)
 }
 
 #' Message a bad HW

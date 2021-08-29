@@ -31,7 +31,8 @@ Imports:
     palmerpenguins,
     learnr,
     DT,
-    types.of.plots
+    types.of.plots,
+    RCurl
 Collate:
     utils.R
     launch_app.R
