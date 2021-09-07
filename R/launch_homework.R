@@ -6,8 +6,8 @@
 #' @noRd
 launch_homework <- function(number = NULL)
 {
-  allowed <- c(2:3, 5:11)
-  script_hws <- c(2)
+  allowed <- c(2, 4:11)
+  #script_hws <- c(2)
   
   # Ugh....
   if (is.null(number)) 
@@ -28,7 +28,7 @@ launch_homework <- function(number = NULL)
   homework_path <- file.path(here::here(), "homeworks")
   
   homework_filename <- glue::glue("{homework_name}_template.Rmd")
-  if (number %in% script_hws)  homework_filename <- gsub(".Rmd$", ".R", homework_filename) 
+  #if (number %in% script_hws)  homework_filename <- gsub(".Rmd$", ".R", homework_filename) 
 
   homework_raw_url <- glue::glue(
     "https://raw.githubusercontent.com/sjspielman/datascience_for_biologists/master/docs/homeworks/{homework_name}/{homework_filename}"
