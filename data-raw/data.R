@@ -26,9 +26,33 @@ chickwts %>%
   mutate(chick_id = 1:n()) %>%
   as_tibble() -> chick_weights
 
+# tidy data paper data
+messy1 <- tibble::tribble(
+  ~name, ~treatmenta, ~treatmentb,
+  "John Smith", NA, 2, 
+  "Jane Doe", 16, 11,
+  "Mary Johnson", 3,1
+)
+
+messy2 <- tibble::tribble(
+  ~"John Smith", ~"Jane Doe", ~"Mary Johnson",
+  NA, 16, 3,
+  2, 11, 1
+)
+
+tidy <- tibble::tribble(
+  ~name, ~treatment, ~result,
+  "John Smith", "a", NA,
+  "John Smith", "b", 2,
+  "Jane Doe", "a", 16,
+  "Jane Doe", "b", 11,
+  "Mary Johnson", "a", 3,
+  "Mary Johnson", "b",1
+)
 
 
-usethis::use_data(algae,
+
+usethis::use_data(messy1, messy2, tidy, algae,
                   biopsy,
                   birthwt,
                   damselfly,
