@@ -5,9 +5,9 @@ account: sjspielman
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4642926
-bundleId: 5028883
+bundleId: 5032466
 url: https://sjspielman.shinyapps.io/intro_R/
-when: 1631553142.40957
-lastSyncTime: 1631553142.40959
+when: 1631634594.16245
+lastSyncTime: 1631634594.16246
 asMultiple: FALSE
 asStatic: FALSE
