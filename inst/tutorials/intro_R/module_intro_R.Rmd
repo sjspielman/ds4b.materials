@@ -332,7 +332,15 @@ class(7)
 class("7")
 ```
 
+<div class = "prompt">The `nchar()` function will tell you how many individual characters are in a string. The code below defines a character variable. Use the `nchar()` function to determine how many characters it contains.</div>
 
+```{r func_q6, exercise = TRUE}
+banana_color <- "yellow"
+```   
+```{r func_q6-solution}
+banana_color <- "yellow"
+nchar(banana_color)
+```
 
 ## Set 4: Working with arrays
 
@@ -342,7 +350,7 @@ class("7")
 
 <div class = "prompt">Define an array variable called `array_numbers` that contains the values 1, 2, 3, 4, and 5. Then, print the variable itself to make sure its contents look right.</div>
 
-+ Hint: Use the function `c()` ("combine") to define your array. Need help? Ask the `introverse` by running `get_help("c")`.
++ Hint: Use the function `c()` ("combine") to define your array.
 + Hint 2: Spaces do NOT matter! For example, `c(8,9,10)` and `c(8, 9,   10)` are equivalent.
 
  
@@ -393,22 +401,74 @@ some_numbers <- c(10, 11, 2, 19, 6)
 length(some_numbers)
 ```
 
-<div class = "prompt">One place where R really shines is *vectorization* - it performs an operation on *all items in an array (vector)* at the same time! The code below multiplies every value in the array `example_array` by 5. Engage with and understand this code, and then modify the the code to instead divide every item in the array by 10.</div>
+<div class = "prompt">One place where R really shines is *vectorization* - it performs an operation on *all items in an array (vector)* at the same time! The code below divides every value in the array `example_array` by 10. Engage with and understand this code, and then modify the the code to instead multiply every item in the array by 5.</div>
 
 + In fact, every operation in R is vectorized because every value is a vector, if only of length 1.
 + When modifying the code be careful not to delete the definition of `example_array`.
 
   
-```{r array_q7, exercise = TRUE}
+```{r array_q8, exercise = TRUE}
 example_array <- c(5, 78, -3, 11, 6, 0)
-example_array * 5
+example_array/10
 ```     
-```{r array_q7-solution}
+```{r array_q8-solution}
 example_array <- c(5, 78, -3, 11, 6, 0)
-example_array / 10
+example_array*5
 ```
 
 
+<div class = "prompt">Add 15 to every number in the array defined below, and _save_ the result to a new array called `example_array_plus15`, which you should print to ensure looks correct.</div>
+
+```{r array_q9, exercise = TRUE}
+example_array <- 4:14
+```     
+```{r array_q9-solution}
+example_array <- 4:14
+example_array_plus15 <- example_array + 15
+example_array_plus15
+```
+
+
+
+<div class = "prompt">Use the `sqrt()` function to quickly calculate the square root of every value in the array defined below.</div>
+
++ Hint: Simply provide the array as an argument to the `sqrt()` function to perform all the calculations at once.
+
+```{r array_q10, exercise = TRUE}
+example_array <- 4:14
+```     
+```{r array_q10-solution}
+example_array <- 4:14
+sqrt(example_array)
+```
+
+
+<div class = "prompt">Use a colon to define an array with values -3 through 3 (i.e., -3, -2, -1, 0, 1, 2, 3). Then, calculate the _log in base 10_ of this array.</div>
+
++ Hint: Remember that the `log()` function takes a _second_ argument to specify a base other than the default *e*.
++ Hint 2: You can do this either in one line of code (directly provide an array to `log()` as the first argument), or in two lines of code where you first define an array variable and then give that variable to `log()` as the first argument.
++ Hint 3: Remember, we can't take the log of negative numbers or 0! The output should reflect that `log()` doesn't work well on non-positive numbers.
+
+```{r array_q11, exercise = TRUE}
+
+```     
+```{r array_q11-solution}
+log(-3:3, 10)
+```
+
+<div class = "prompt">R has several useful functions for calculating _summary statistics_, like `mean()`, `median()`, and `sd()` for calculating the mean (average), median, and standard deviation of some numbers. The code below defines an array aptly named `calculate_me_please`. Use the `mean()`, `median()`, and `sd()` functions to calculate these statistics.</div>
+
++ Simply provide the array as an argument to those functions to perform these calculations.
++ This is a good time to point out that means are _heavily influenced by outliers_ (see that `0.0000004`?), but the median is not!
+
+```{r array_q12, exercise = TRUE}
+calculate_me_please <- c(88.1, 89.5, 92.22, 85.17, 87.56, 0.0000004, 82.2, 85.1, 90.998, 97.25)
+```     
+```{r array_q12-solution}
+mean(calculate_me_please)
+median(calculate_me_please)
+sd(calculate_me_please)
+```
 
 ## Set 5: Working with logical statements
 
@@ -664,7 +724,7 @@ value1 == value2
 
 ```{r logical_q13-solution}
 comp1_val1 <- 18
-comp2_val2 <- 5
+comp1_val2 <- 5
 
 comp2_val1 <- 11
 comp2_val2 <- 100
@@ -689,7 +749,7 @@ value2 <- 5
 value1 == value2
 ```
 
-<div class = "prompt">The function `nchar()` asks how many characters are in a string (how long is a string?). See this function in action below. **Again, run and engage with this code below as practice!**</div>
+<div class = "prompt">As you've seen in these exercises, the function `nchar()` asks how many characters are in a string (how long is a string?). See this function in action below. **Again, run and engage with this code below as practice!**</div>
 
 
 ```{r practice_nchar, exercise=TRUE, exercise.lines = 10}
@@ -797,11 +857,11 @@ length(my_favorite_things) == 4
 + Note: This type of output would be referred to as a *logical array* - it is an array of `TRUE` or `FALSE` values.
 
 
-```{r array_q8, exercise = TRUE}
+```{r array_q7, exercise = TRUE}
 example_array <- c(5, 78, -3, 1, 6, 0)
 example_array > 0
 ``` 
-```{r array_q8-solution}
+```{r array_q7-solution}
 example_array <- c(5, 78, -3, 1, 6, 0)
 # All are FALSE except the last entry 
 example_array == 0
@@ -898,7 +958,7 @@ ifelse(10 == 12, "aligator", "crocodile")
 # Save it to a variable!
 print("example 3")
 beast <- ifelse(10 == 12, "aligator", "crocodile")
-print(beast)
+beast
 ```
 
 Practice using the `ifelse()` function to define several variables as follows...
@@ -1103,8 +1163,7 @@ mean(msleep$sleep_rem, na.rm = TRUE)
 
 <div class = "prompt">The column `vore` is a *character* column - it contains strings rather than numbers. Let's examine this column using the function `unique()`, which returns all unique values in a given array - What are the unique vores in this dataset?</div>
 
-+ Hint: Remember, you can always look up how to use a function in the `introverse`! Try running `get_help("unique")` if you're stuck.
-
++ This function takes one argument: the array to find unique values in. Here, that array is the `msleep$vore` column.
 
 ```{r msleep_q5, exercise = TRUE}
 
@@ -1113,7 +1172,7 @@ mean(msleep$sleep_rem, na.rm = TRUE)
 unique(msleep$vore)
 ```
 
-<div class = "prompt">We can also use the function `table()` to get a _count_ of all unique values in a categorical (or factor) variable. Use `table()` to determine how many of each `vore` category is in the dataset.</div>
+<div class = "prompt">We can also use the function `table()` to get a _count_ of all unique values in a categorical (or factor) variable. Use `table()` to determine how many of each `vore` category is in the dataset. This function takes one argument: the array to make a table of. Here, that array is the `msleep$vore` column.</div>
 
 + You'll notice that `table()` doesn't even consider `NA` values. Very kind!
 
