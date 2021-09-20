@@ -284,6 +284,7 @@ You can use the `get_help()` function in _any code chunk_ to get some help, whic
 
 ## Set 1: Scatterplots
 
+> NOTE: These exercise code chunks don't let you "tab in" lines. That's ok! RStudio will let you perfectly fine. Don't worry about tabs here :)
 
 Scatterplots show the **relationship** between two variables, and they use the `geom_point()` geometry as shown in this example where sparrow `Weight` is plotted *across* sparrow `Wingspread` (_Y goes across X_).
 
@@ -296,7 +297,7 @@ ggplot(sparrows) + # Use the sparrows dataset
 The `geom_point()` geom can accept several visual features, which can either be plainly specified to `geom_point()` or specified as an *aesthetic* if they map to the data. The most important ones are:
 
 + `color`: Color of points
-  + *Certain* types of points can also have a `fill` (question 9 below)
+  + *Certain* types of points can also have a `fill`, and these are introduced in Set 2 of these exercises.
 + `size`: Size of points
 + `shape`: Shape of points
 + For more, run `get_help("geom_point")` in a code chunk here to see the `introverse` docs.
