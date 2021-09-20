@@ -15,7 +15,7 @@ runtime: shiny_prerendered
 knitr::opts_chunk$set(echo = TRUE, collapse=TRUE)
 library(learnr)
 library(tidyverse) 
-#library(introverse)
+library(introverse)
 tutorial_options(exercise.lines = 6)
 
 
@@ -258,6 +258,28 @@ summary(sparrows$Wingspread)
 ```{r summary-column-solution}
 summary(sparrows$Sex)
 ```
+
+
+## The `introverse` is here to help
+
+Don't forget to use the `introverse` library to help you! The library has been loaded into these exercises. Here are all the help topics you might want for these exercises:
+
++ Plot setup:
+  + `ggplot()` for setting up the plot. To get help, `get_help("ggplot")` (with quotes!), and so on for the rest below...
+  + `aes()` for _mapping_ variables to plot aesthetics
++ Plot geometries:
+  + (Set 1,4) `geom_point()` for making points, usually for a scatterplot
+  + (Set 2) `geom_histogram()`, for making histograms
+  + (Set 2) `geom_density()`, for making density plots
+  + (Set 2) `geom_boxplot()`, for making boxplots
+  + (Set 2) `geom_jitter()`, for making strip/jitter plots
+  + (Set 2) `geom_violin()`, for making violin plots
+  + (Set 3) `geom_bar()`, for making bar plots that show counts of a categorical variable
+  + (Set 4 )`geom_smooth()`, for adding trendlines, usually to a scatterplot
++ Additional plot features:
+  + (All sets) `labs()`, for adding/customizing labels to the plot
+
+You can use the `get_help()` function in _any code chunk_ to get some help, which will open in another browser! Prefer point-and-click? Use [this link](https://spielmanlab.github.io/introverse/articles/introverse_online.html) (but beware, there is a lot going on there...).
 
 
 ## Set 1: Scatterplots
@@ -805,7 +827,7 @@ ggplot(sparrows) +
 
 Recall that we make scatterplots with `geom_point()`, and scatterplots are used to show the relationship between two x/y numeric values. In this second scatterplot lesson, we'll learn some additional customization strategies for making scatterplots your own.
 
- Let's play with point size and shape. [This website](http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r) shows all the different shapes in R you can use - we specify them with numbers. (Note: this website shows some example plotting using a non-`ggplot2` approach. Ignore that. We only care about the point symbols!) 
+ Let's play with point size and shape. [This website](http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r) shows all the different shapes in R you can use - we specify them with numbers. (Note: this website shows some example plotting using a non-`ggplot2` approach. Ignore that. We only care about the point symbols!) You can also quickly see the point shapes by asking `introverse` for help with `geom_point()` with this code: `get_help("geom_point")`
 
 <div class = "prompt">The plot below contains larger points at size 2, and points shaped like triangles. First run and understand the template code. Then, modify the code to make the points size 3 and using shape 18 (diamond).</div>
 
@@ -981,10 +1003,10 @@ ggplot(sparrows, aes(x = Wingspread, y = Femur_Length)) +
 
 + Clean and professional labels using `labs()`
 + *Color* all points based on `Survival`
-  + With an included *trendline* for EACH `Survival` level (make sure your aesthetic placement is appropriate!)
+  + With an included *linear trendline* for EACH `Survival` level (make sure your aesthetic placement is appropriate!)
 + *Size* all points based on `Weight` (Hint: use `size` as an aesthetic to map the given variable)
 + Make all the points into shape 15
-+ **BONUS**: Try changing the [theme](https://ggplot2.tidyverse.org/reference/ggtheme.html)
++ **BONUS**: Try changing the [theme](https://spielmanlab.github.io/introverse/articles/themes.html)
 
 Once the plot is made, think about these design choices. Just because one *can* add these visual features, does it mean one *should* add these visual features? (Answer: No.) 
 Note: Some of the legend colors will come out funky - later, we will learn how to deal with this type of situation.
