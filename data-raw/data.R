@@ -1,7 +1,7 @@
 library(tidyverse)
 
 
-datapath <- "datasets/"
+datapath <- "data-raw/datasets/"
 algae <- readr::read_csv(file.path(datapath, "algae.csv"))  
 biopsy <- readr::read_csv(file.path(datapath, "biopsy.csv")) 
 birthwt <- readr::read_csv(file.path(datapath, "birthwt.csv"))
@@ -9,7 +9,9 @@ damselfly <- readr::read_csv(file.path(datapath, "damselfly.csv"))
 olives <- readr::read_csv(file.path(datapath, "olives.csv")) 
 pima <- readr::read_csv(file.path(datapath, "pima.csv")) 
 urine <- readr::read_csv(file.path(datapath, "urine.csv"))  
-sparrows <- readr::read_csv(file.path(datapath, "sparrows.csv"))  
+sparrows <- readr::read_csv(file.path(datapath, "sparrows.csv"), col_types = list(Age = col_factor(),
+                                                                                  Survival = col_factor(),
+                                                                                  Sex = col_factor() )) 
 wine <- readr::read_csv(file.path(datapath, "wine.csv")) 
 wine_version1 <- readr::read_csv(file.path(datapath, "wine_version1.csv"))
 wine_version2 <- readr::read_csv(file.path(datapath, "wine_version2.csv"))

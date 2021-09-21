@@ -5,9 +5,9 @@ account: sjspielman
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4642983
-bundleId: 5052547
+bundleId: 5052569
 url: https://sjspielman.shinyapps.io/ggplot2/
-when: 1632154481.42675
-lastSyncTime: 1632154481.42676
+when: 1632154774.24523
+lastSyncTime: 1632154774.24524
 asMultiple: FALSE
 asStatic: FALSE
