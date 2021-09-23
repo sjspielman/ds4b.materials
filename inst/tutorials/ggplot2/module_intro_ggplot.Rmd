@@ -16,157 +16,8 @@ knitr::opts_chunk$set(echo = TRUE, collapse=TRUE)
 library(learnr)
 library(tidyverse) 
 library(introverse)
-tutorial_options(exercise.lines = 6)
-
-
-
-sparrows <- tibble::tribble(
-  ~Sex,~Age,~Survival,~Length,~Wingspread,~Weight,~Skull_Length,~Humerus_Length,~Femur_Length,~Tarsus_Length,~Sternum_Length,~Skull_Width,
-"Male","Adult","Alive",154,241,24.5,31.2,17.4,17,26,21.1,14.9,
-"Male","Adult","Alive",160,252,26.9,30.8,18.7,18,30,21.4,15.3,
-"Male","Adult","Alive",155,243,26.9,30.6,18.6,17.9,29.2,21.5,15.3,
-"Male","Adult","Alive",154,245,24.3,31.7,18.8,17.5,29.1,21.3,14.8,
-"Male","Adult","Alive",156,247,24.1,31.5,18.2,17.9,28.7,20.9,14.6,
-"Male","Adult","Alive",161,253,26.5,31.8,19.8,18.9,29.1,22.7,15.4,
-"Male","Adult","Alive",157,251,24.6,31.1,18.8,18.7,29.3,21.9,15.5,
-"Male","Adult","Alive",159,247,24.2,31.4,18.5,18.2,28.6,20.1,15.5,
-"Male","Adult","Alive",158,247,23.6,29.8,17.9,17.1,27.4,20.8,15.3,
-"Male","Adult","Alive",158,252,26.2,32,19,18.8,29.3,21.8,15.6,
-"Male","Adult","Alive",160,252,26.2,32,18.8,18.4,28.7,22.7,15.8,
-"Male","Adult","Alive",162,253,24.8,32.3,19.5,19.1,28.8,23.4,16.1,
-"Male","Adult","Alive",161,243,25.4,31.8,18.3,18.3,28.6,22.6,15.2,
-"Male","Adult","Alive",160,250,23.7,29.8,18.5,17.9,28,20.8,15,
-"Male","Adult","Alive",159,247,25.7,31.4,18.5,18.2,29,23.5,15,
-"Male","Adult","Alive",158,253,25.7,31.9,18.9,17.8,29.2,21.8,15.2,
-"Male","Adult","Alive",159,247,26.5,31.6,18.6,18.1,29.3,23.4,15.5,
-"Male","Adult","Alive",166,253,26.7,32.5,19.5,19.4,31.2,22.3,15.2,
-"Male","Adult","Alive",159,247,23.9,31.4,19.1,18.4,28.3,21,15.3,
-"Male","Adult","Alive",160,248,24.7,31.3,19.1,18.7,29.9,20.4,15.3,
-"Male","Adult","Alive",161,252,28,31.8,19.6,18.6,30.2,22.5,15,
-"Male","Adult","Alive",163,251,27.9,31.9,19.5,18.9,29.7,21.8,15.8,
-"Male","Adult","Alive",156,242,25.9,32,18.4,18.1,28.3,22.5,15.5,
-"Male","Adult","Alive",165,251,25.7,32.2,19.1,18.8,29.5,22,15.6,
-"Male","Adult","Alive",160,247,26.6,32.4,18.5,18,28.1,21.2,15,
-"Male","Adult","Alive",158,244,23.2,31.6,18.5,18.1,29,22.6,14.9,
-"Male","Adult","Alive",160,242,25.7,31.6,18,17.9,28.5,20,15.7,
-"Male","Adult","Alive",157,245,26.3,32.2,18.8,18.4,29,21.6,15.1,
-"Male","Adult","Alive",159,244,24.3,31.5,18.4,17.7,28.1,21.5,15.6,
-"Male","Adult","Alive",160,253,26.7,32.1,18.8,18.1,28.4,21.9,15,
-"Male","Adult","Alive",158,245,24.9,31.4,18.4,17.9,28.4,21.7,14.7,
-"Male","Adult","Alive",161,247,23.8,31.4,18.7,17.6,28,20,15.3,
-"Male","Adult","Alive",160,247,24.6,32.3,19.2,18.9,28.8,23,15.4,
-"Male","Adult","Alive",160,247,27,32,19.2,18.7,29.8,22.2,16,
-"Male","Adult","Alive",153,241,24.7,32.2,18.5,17.3,27.7,22.5,15,
-"Male","Adult","Dead",165,249,26.5,31,18.8,17.9,27.8,21.5,15.4,
-"Male","Adult","Dead",160,245,26.1,32,18.7,18,28.2,21.4,15.5,
-"Male","Adult","Dead",161,249,25.6,32.3,18.9,18.2,28.7,21,15.3,
-"Male","Adult","Dead",162,246,25.9,32.3,18.8,18,28.8,22.1,15.4,
-"Male","Adult","Dead",163,250,25.5,32.5,19.1,18.6,30.4,22.6,15.8,
-"Male","Adult","Dead",162,247,27.6,31.8,18.6,18.3,28.3,22.1,15.2,
-"Male","Adult","Dead",163,246,25.8,31.4,17.5,16.8,27.3,21.2,15.3,
-"Male","Adult","Dead",161,246,24.9,30.5,18.8,18.4,28.9,20.4,14.7,
-"Male","Adult","Dead",160,242,26,31,18.9,18.1,28.1,20.4,15.2,
-"Male","Adult","Dead",162,246,26.5,31.5,18.3,17.7,27.7,20.5,15.4,
-"Male","Adult","Dead",160,249,26,31.4,18.4,17.5,27.9,21.6,15.3,
-"Male","Adult","Dead",161,250,27.1,31.6,18.7,18.1,28.4,21.6,16,
-"Male","Adult","Dead",162,248,25.1,31.9,18.9,18.3,29.3,21.3,15,
-"Male","Adult","Dead",165,252,26,32.3,18.4,18,29.1,22.5,15.5,
-"Male","Adult","Dead",161,243,25.6,32.5,18,18,28.5,21.1,15.4,
-"Male","Adult","Dead",161,244,25,31.3,17.8,17.4,27.5,22.2,15.1,
-"Male","Adult","Dead",162,248,24.6,31,18.1,17.8,27.6,21.3,15,
-"Male","Adult","Dead",164,244,25,31.2,17.9,17.5,27.3,20.2,15.4,
-"Male","Adult","Dead",158,247,26,32,18.5,18,29.1,20.4,15.4,
-"Male","Adult","Dead",162,253,28.3,31.8,19.1,18.2,29.3,21.8,15.2,
-"Male","Adult","Dead",156,239,24.6,30.5,16.7,16.7,26.5,20.6,14.5,
-"Male","Adult","Dead",166,251,27.5,31.5,18.3,17.6,28.4,21.5,15.5,
-"Male","Adult","Dead",165,253,31,32.4,19.4,19,30,23,15.6,
-"Male","Adult","Dead",166,250,28.3,32.4,19.1,18.2,29.9,23.3,15.4,
-"Male","Young","Alive",156,246,24.6,32,18.8,18.7,29.6,21.6,15,
-"Male","Young","Alive",156,245,25.5,32.1,19.3,18.2,29.1,20.7,15.7,
-"Male","Young","Alive",163,248,24.8,32.2,18.9,18.6,29.6,21.7,15.4,
-"Male","Young","Alive",163,248,26.3,33,18.7,17.9,29.2,21.3,15.5,
-"Male","Young","Alive",160,250,24.4,31.5,18.9,18.2,29.8,22.7,15.3,
-"Male","Young","Alive",156,237,23.3,30.6,17.6,16.9,25.7,19.7,14.9,
-"Male","Young","Alive",162,253,26.7,32,19.3,18.6,30.4,22.3,16,
-"Male","Young","Alive",163,254,26.4,32,19.5,19,29.6,22.5,15.4,
-"Male","Young","Alive",164,251,26.9,32,19.2,18.8,29.7,22.5,15.7,
-"Male","Young","Alive",163,244,24.3,31.3,18.2,17.3,27.5,22.7,15.5,
-"Male","Young","Alive",160,247,27,31.5,19.4,18.6,29.9,21.5,15.7,
-"Male","Young","Alive",160,250,26.8,32.5,19.4,18.5,28.5,21.4,16.1,
-"Male","Young","Alive",158,247,24.9,32.4,18.9,18.4,28.9,22,14.9,
-"Male","Young","Alive",158,249,26.1,32.2,18.9,18.7,29.2,20.8,15.3,
-"Male","Young","Alive",158,243,26.6,32.4,19,18.1,29.5,22.6,15.5,
-"Male","Young","Alive",155,237,23.3,30.2,17.4,16.6,25.7,20.2,14.9,
-"Male","Young","Dead",160,249,24.2,30.4,18.8,18.2,28.7,21.3,15.7,
-"Male","Young","Dead",156,236,26.8,30,17.5,17,27.1,21.1,14.3,
-"Male","Young","Dead",158,240,23.5,31,18.2,17.8,28.3,20.4,15.1,
-"Male","Young","Dead",166,245,26.9,31.7,18.2,17.7,28.1,21.5,15.3,
-"Male","Young","Dead",165,255,28.6,31.5,19.5,18.9,29.8,21.7,15.6,
-"Male","Young","Dead",157,238,24.7,31.2,17.3,17.2,29.4,19.5,15.2,
-"Male","Young","Dead",164,250,27.3,31.8,19.4,18.4,29.7,21.8,14.9,
-"Male","Young","Dead",166,256,25.7,31.7,19.1,19.1,30.1,21.8,15.1,
-"Male","Young","Dead",167,255,29,32.2,19.4,18.9,30.4,21.7,16.2,
-"Male","Young","Dead",161,246,25,31.5,18.8,18,28.5,21.6,14.9,
-"Male","Young","Dead",166,254,27.5,31.4,19.3,18.8,28.5,23.2,15.3,
-"Male","Young","Dead",161,251,26,31.5,18.6,18,28.5,21,15,
-"Female","Adult","Alive",156,245,25.3,31.6,18.5,18,29.3,20.5,15.7,
-"Female","Young","Alive",154,240,22.6,30.4,17.9,17.4,28,19.6,14.8,
-"Female","Adult","Alive",153,240,25.1,31,18.4,18.1,28.5,20.6,14.9,
-"Female","Young","Alive",153,236,23.2,30.9,17.7,17.2,28.8,20.2,15.1,
-"Female","Young","Alive",155,243,24.4,31.5,18.6,18.7,29.7,20.3,15.1,
-"Female","Young","Alive",163,247,25.1,32,19,18.6,29.6,20.9,15.3,
-"Female","Adult","Alive",157,238,24.6,30.9,18.4,18.5,29.8,20.2,14.9,
-"Female","Adult","Alive",155,239,24,32.8,18.6,18.8,29.8,21.2,15.3,
-"Female","Adult","Alive",164,248,24.2,32.7,19.1,19.1,30.5,21.1,15.3,
-"Female","Young","Alive",158,238,24.9,31,18.8,17.5,27.7,22,15,
-"Female","Adult","Alive",158,240,24.1,31.3,18.6,17.9,28.1,22,15,
-"Female","Young","Alive",160,244,24,31.1,18.6,18.5,29.3,20.5,15,
-"Female","Adult","Alive",161,246,26,32.3,19.2,18.6,29.3,21.8,15.8,
-"Female","Adult","Alive",157,245,24.9,32,19.1,18.8,30.1,20,15.1,
-"Female","Young","Alive",157,235,25.5,31.5,18.1,17.9,28.8,19.8,15.5,
-"Female","Adult","Alive",156,237,23.4,30.9,18,17.6,28.5,20.3,15.6,
-"Female","Adult","Alive",158,244,25.9,31.4,18.5,17.9,29.1,21.6,15.2,
-"Female","Adult","Alive",153,238,24.2,30.5,18.2,18,28.3,20.9,15.1,
-"Female","Adult","Alive",155,236,24.2,30.3,18.5,17.9,28.4,20.1,14.9,
-"Female","Adult","Alive",163,246,27.4,32.5,18.6,18.1,29.5,21.9,16,
-"Female","Adult","Alive",159,236,24,31.5,18,18.1,28.7,21.5,15.4,
-"Female","Adult","Dead",155,240,26.3,31.4,18,18,28.5,20.7,15.6,
-"Female","Adult","Dead",156,240,25.8,31.5,18.2,17.2,28.6,20.6,15.2,
-"Female","Adult","Dead",160,242,26,32.6,18.8,18.6,29.4,21.7,15.2,
-"Female","Young","Dead",152,232,23.2,30.3,17.2,17.3,26.6,19.8,15,
-"Female","Adult","Dead",160,250,26.5,31.7,18.8,18.6,30.1,22.5,15.6,
-"Female","Young","Dead",155,237,24.2,31,18.5,18.4,28.4,20,15.5,
-"Female","Young","Dead",157,245,26.9,32.2,19.5,19.1,31.2,21.4,15.7,
-"Female","Young","Dead",165,245,27.7,33.1,19.8,19.2,30.4,22,16.1,
-"Female","Young","Dead",153,231,23.9,30.1,17.3,16.8,26.5,19.8,15,
-"Female","Young","Dead",162,239,26.1,30.3,18,17.4,27.7,23.1,14.9,
-"Female","Young","Dead",162,243,24.6,31.6,18.8,18.5,29.5,21.3,15.4,
-"Female","Young","Dead",159,245,23.6,31.8,18.5,17.8,28.7,21.7,15.5,
-"Female","Young","Dead",159,247,26,30.9,18.1,16.9,27.9,19,14.7,
-"Female","Adult","Dead",155,243,25,30.9,18.5,18.1,28.6,21.3,15.2,
-"Female","Adult","Dead",162,252,24.8,31.9,19.1,18.7,30,22.2,15.6,
-"Female","Adult","Dead",152,230,22.8,30.4,17.3,16.9,26.5,18.6,14,
-"Female","Adult","Dead",159,242,24.8,30.8,18.2,16.9,27.7,20.5,14.6,
-"Female","Adult","Dead",155,238,24.6,31.2,17.9,17.8,28,19.3,14.9,
-"Female","Young","Dead",163,249,30.5,33.4,19.5,19.5,30.7,22.8,16.3,
-"Female","Young","Dead",163,242,24.8,31,18.1,18.1,28.7,20.7,15.4,
-"Female","Adult","Dead",156,237,23.9,31.7,18.2,18.2,27.7,20.3,15.5,
-"Female","Adult","Dead",159,238,24.7,31.5,18.4,17.8,29.1,20.3,15.2,
-"Female","Young","Dead",161,245,26.9,32.1,19.1,17.9,29,20.8,15.4,
-"Female","Adult","Dead",155,235,22.6,30.7,17.6,17.6,28.4,19.6,14.8,
-"Female","Adult","Dead",162,247,26.1,31.9,19.1,18.7,29.4,20.4,15.7,
-"Female","Young","Dead",153,237,24.8,30.6,18.6,18.2,29.8,20.4,15.1,
-"Female","Young","Dead",162,245,26.2,32.5,18.5,18.6,28,21.1,15.6,
-"Female","Young","Dead",164,248,26.1,32.3,18.8,18,29.4,20.9,15
-) %>%
-  dplyr::mutate(Age = case_when(
-                        Weight < 24 ~ "Juvenile",
-                        between(Weight, 24, 25.8) ~ "Young",
-                        Weight > 25.8 ~ "Adult")
-  ) %>%
-  dplyr::mutate(Age = as.factor(Age), 
-                Survival = as.factor(Survival), 
-                Sex = as.factor(Sex))
+library(ds4b.materials)
+tutorial_options(exercise.lines = 8)
 ```
 
 ## Background: The `ggplot2` package
@@ -278,6 +129,8 @@ Don't forget to use the `introverse` library to help you! The library has been l
   + (Set 4 )`geom_smooth()`, for adding trendlines, usually to a scatterplot
 + Additional plot features:
   + (All sets) `labs()`, for adding/customizing labels to the plot
+  + (Set 5) [This post](https://spielmanlab.github.io/introverse/articles/color_fill_scales.html) with functions for customizing mapped color/fill palettes. 
+    + Use any of these for more help: `get_help("scale_color_manual")`, `get_help("scale_color_brewer")`, or `get_help("scale_color_viridis_d")`
 
 You can use the `get_help()` function in _any code chunk_ to get some help, which will open in another browser! Prefer point-and-click? Use [this link](https://spielmanlab.github.io/introverse/articles/introverse_online.html) (but beware, there is a lot going on there...).
 
@@ -437,8 +290,6 @@ ggplot(sparrows) +
   + geom_point()
 
 ```
-
-
 
 
 ## Set 2: Visualizing distributions
@@ -796,8 +647,11 @@ ggplot(sparrows) +
   geom_bar()
 ```
 
-<div class = "prompt"> By default, `ggplot2` makes "stacked" barplots when there are multiple groups. We can also show them "side-by-side", which is called "dodged", by adding this argument to `geom_bar()`: `geom_bar(position = position_dodge())`</div>
+<div class = "prompt"> By default, `ggplot2` makes "stacked" barplots when there are multiple groups. We can also show them "side-by-side", which is called "dodged", by straight-up adding this argument to `geom_bar()`: `position = position_dodge()`.</div>
 
++ Hint: Literally all you need to do is, instead of writing `geom_bar()`, write it wit this extra argument: `geom_bar(position = position_dodge())`
++ Hint 2: Feeling fancy? Why not add just a color? Just a fill? A mapped color? A mapped fill? Have some fun with it :)
++ Hint 3: This is on HW4!
 
 ```{r bar_5, exercise = TRUE}
 
@@ -810,7 +664,7 @@ ggplot(sparrows) +
   geom_bar(position = position_dodge())
 ```
 
-<div class = "prompt"> For fun (so fun!), make it a *horizontal* barplot!! Simply change the `x` mapping to `y` instead, and don't provide an `x` aesthetic.</div>
+<div class = "prompt"> For fun (so fun!), make it a *horizontal* barplot!! Simply change the `x` mapping to `y` instead, and don't provide an `x` aesthetic. As always, drawing it out will help!</div>
 
 ```{r bar_7, exercise = TRUE}
 
@@ -824,13 +678,161 @@ ggplot(sparrows) +
 ```
 
 
-## Set 4: Scatterplots, Part 2
+
+## Set 4: Changing the order of factors
+
+
+The code below makes a scatterplot of femur length across wingspread with points colored by _Age_:
+
+```{r fct_demo, fig.width =5, fig.height = 3, exercise=TRUE}
+ggplot(sparrows) + 
+  aes(x = Wingspread, 
+      y = Femur_Length, 
+      color = Age) +  
+  geom_point()
+```
+
+You'll notice in the legend that the colors are ordered "Young", "Adult", "Juvenile", "Young" - this is because the factor variable is in that order:
+
+```{r fct_demo2, exercise=TRUE}
+levels(sparrows$Age)
+```
+
+
+What if we wanted the order to be different and show the variables in biological order: "Juvenile", "Young", and finally "Adult" last? Hint: We do!! There are several strategies to accomplish this task, and we will learn how to do this using a function from the package [`forcats`](https://forcats.tidyverse.org/reference/), a `tidyverse` package that helps change the order of a factor variable. The package name involves several puns, and the library has been pre-loaded for you in these exercises. 
+
+We will use the function `fct_relevel()` from the `forcats` package, which you can always learn more about with `get_help("fct_relevel")`. Begin to see how this function works below - this demo code changes the `Age` levels to be in order "Juvenile", "Young", "Adult". We provide two arguments - the variable to work with (the `Age` column), and an array with the new order we want. _Make sure to spell these categories precisely as they appear in the dataset!!_ 
+
++ This code does not redefine the `Age` column since we aren't assigning anything with `<-`. It is simply showing us the output from performing such an operation. The data remains fully unchanged, the order of levels has changed to the order we provided - see the bottom of the output!
+
+```{r fct_demo3, exercise=TRUE}
+# See how a new order for Levels: is printed at the end??
+fct_relevel(sparrows$Age, c("Juvenile", "Young", "Adult"))
+```
+
+<br>
+We can actually use this function _directly inside of building a ggplot_!! Remember, when we make ggplots, we do not need to use dollar sign `sparrows$Age` notation - we can simply refer to `Age` since we have already specified using the `sparrows` dataset. **Instead of just mapping color to `Age`, we map color to a releveled-on-the-fly `Age`!** 
+
+```{r fct_demo4, exercise=TRUE}
+ggplot(sparrows) + 
+  aes(x = Wingspread, 
+      y = Femur_Length, 
+      color = fct_relevel(Age, c("Juvenile", "Young", "Adult")) 
+    ) + # placing the closing aes() parentheses on this next line to make the above code easier to see.
+  geom_point()
+```
+
+**We formally changed the order in our plot, hurray!** However, the legend title now looks like hot garbage. We can fix that with a *label* - we need to relabel the *color aesthetic*:
+
+```{r fct_demo5, exercise=TRUE}
+ggplot(sparrows) + 
+  aes(x = Wingspread, 
+      y = Femur_Length, 
+      color = fct_relevel(Age, c("Juvenile", "Young", "Adult"))) + # gotta really count those parentheses!
+  geom_point() + 
+  labs(color = "Sparrow age") # relabel the COLOR legend
+```
+
+
+<div class = "prompt">Using the code above to practice manipulating factor order for plotting, make another version of this scatterplot of femur length across wingspread, but order `Age` as: "Adult", "Young", "Juvenile" instead.</div>
+
+
+```{r fct0, exercise=TRUE}
+
+```
+
+```{r fct0-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread, 
+      y = Femur_Length, 
+      color = fct_relevel(Age, c("Adult", "Young", "Juvenile"))
+     ) + 
+  geom_point() + 
+  labs(color = "Sparrow age") # relabel the COLOR legend
+```
+
+
+<div class = "prompt">Engage with this new skill by making another scatterplot of femur length across wingspread, but this time, _map color to `Sex` but in order "Female" then "Male" instead of the default_ (see the default for yourself by running `levels(sparrows$Sex)`!!). Make sure you also include a clean legend title!</div>
+
++ Start slow and build up! First, can you make this scatterplot in the default order? Then, can you modify the `aes()` argument to `color` to change that default order of `Sex`? Finally, can you add in the cleaner legend title?
+
+
+```{r fct1, exercise = TRUE}
+
+```
+
+```{r fct1-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread, 
+      y = Femur_Length, 
+      color= fct_relevel(Sex, c("Female", "Male"))) +  
+  geom_point() + 
+  labs(color = "Sparrow sex")
+```
+
+<div class = "prompt">Make a _density plot_ of the distribution of femur lengths, where `fill` is mapped to `Sex`, which again should be in order "Female" and then "Male." To ensure a nice legend title, you'll need to use the `fill` argument to labs, not color (since we are mapping a fill!)</div>
+
+```{r fct2, exercise = TRUE}
+
+```
+
+```{r fct2-solution}
+ggplot(sparrows) + 
+  aes(x = Femur_Length, 
+      fill = fct_relevel(Sex, c("Female", "Male"))) +  
+  geom_density(alpha = 0.5) + 
+  labs(fill = "Sparrow sex")
+```
+
+<div class = "prompt">Now, make a _boxplot_ of femur length across Sex, where boxplots are filled by `Sex` in the order "Male" then "Female". This one is a little trickier, since we BOTH need to specify `Sex` on the x-axis _and_ as the fill aesthetics. This means we need to use `fct_relevel()` twice. Run and understand this code for some learning to apply to the next question!</div>
+
+  + Hint: Don't forget that you know how to make a boxplot! We need `Femur_Length` on the Y-axis and `Sex` on the X-axis, and `Sex` mapped to _fill_.
+
+```{r fct3, exercise = TRUE}
+
+```
+
+```{r fct3-solution}
+ggplot(sparrows) + 
+  aes(x = Sex,
+      y = Femur_Length,
+      fill = fct_relevel(Sex, c("Female", "Male")))+
+  geom_boxplot() +
+  labs(fill = "Sparrow sex")
+```
+
+
+<div class = "prompt">In the previous boxplot, you'll see because you changed the `fill` order, there is now a _different order_ on the x-axis and in the legend! We want to keep this more consistent, so we need to _also_ provide the whole `fct_relevel()` stuff as the X aesthetic argument, just like we do for fill.</div>
+
++ When you relevel an axis, the axis label ends up like garbage too! Make sure to clean up the x-axis label by adding an `x` argument to `labs()`!
+
+```{r fct4, exercise = TRUE}
+
+```
+
+```{r fct4-solution}
+ggplot(sparrows) + 
+  aes(x = fct_relevel(Sex, c("Female", "Male")), 
+      y = Femur_Length,
+      fill = fct_relevel(Sex, c("Female", "Male")))+
+  geom_boxplot() +
+  labs(fill = "Sparrow sex",
+       x = "Sparrow sex")
+```
+
+
+
+
+
+## Set 5: Scatterplots, Part 2
 
 Recall that we make scatterplots with `geom_point()`, and scatterplots are used to show the relationship between two x/y numeric values. In this second scatterplot lesson, we'll learn some additional customization strategies for making scatterplots your own.
 
- Let's play with point size and shape. [This website](http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r) shows all the different shapes in R you can use - we specify them with numbers. (Note: this website shows some example plotting using a non-`ggplot2` approach. Ignore that. We only care about the point symbols!) You can also quickly see the point shapes by asking `introverse` for help with `geom_point()` with this code: `get_help("geom_point")`
+ Let's play with point size and shape. [This website](http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r) shows all the different shapes in R you can use - we specify them with numbers. (Note: this website shows some example plotting using a non-`ggplot2` approach. Ignore that. We only care about the point symbols!). 
+ 
+You can also quickly see the point shapes by asking `introverse` for help with `geom_point()` with this code: `get_help("geom_point")`.
 
-<div class = "prompt">The plot below contains larger points at size 2, and points shaped like triangles. First run and understand the template code. Then, modify the code to make the points size 3 and using shape 18 (diamond).</div>
+<div class = "prompt">The plot below contains points of size 2 that are shaped like triangles, designated by shape `17` (see the shape links above!). First run and understand the template code. Then, modify the code to make the points size 3 and using shape 18 (diamond).</div>
 
 + Hint: We are literally providing a single size and shape, NOT mapping size and shape to the data! Therefore, they are regular arguments to `geom_point()`, NOT to `aes()`.
 
@@ -1038,3 +1040,350 @@ ggplot(sparrows, aes(x = Wingspread, y = Femur_Length, color = Survival, size = 
 
 ```
 
+
+
+## Set 6: Customizing mapped color and fill palettes
+
+For this set, you will be practicing applying _non-default_ color and fill palettes to your mapped colors and fills. For all questions, you are simply modifying one of these three plots, and you can copy/paste the "baseline" plot code into all questions in this set!
+ 
++ **Plot 1: A scatterplot with a _discrete/categorical color mapping_**
+
+  ```{r set5_plot1, fig.width = 5, fig.height = 3}
+  ggplot(sparrows) + 
+    aes(x = Wingspread,
+        y = Weight,
+        color = Age) + # Age is a categorical variable
+    geom_point()
+  ```
+
++ **Plot 2:  A violin plot with a _discrete/categorical fill mapping_**
+
+  ```{r set5_plot3, fig.width = 5, fig.height = 3}
+  ggplot(sparrows) + 
+    aes(x = Age,
+        y = Wingspread,
+        fill = Age) + # Age is a categorical variable
+    geom_violin() 
+   ```   
+  
+
++ **Plot 3: A scatterplot with a _continuous color mapping_**
+
+  ```{r set5_plot2, fig.width = 5, fig.height = 3}
+  ggplot(sparrows) + 
+    aes(x = Wingspread,
+        y = Weight,
+        color = Wingspread) + # Wingspread is a continuous variable
+    geom_point()
+  ```
+
+
+
+### Set 6.1: Specifying custom colors and fills
+
+> Remember to use the PDF with all the colors!! So many colors!!
+> Need help? Use `get_help("scale_color_manual")`.
+
+<div class = "prompt">Use the function `scale_color_manual()` to set **THREE** custom colors of your choosing to recreate Plot 1. The code below shows how to use this function: We use the argument `values` to provide _an array_ of your three chosen (string!) colors. (Remember, Plot 1 code is up there!)
+<br>
+Explore this code, and modify it to provide three DIFFERENT colors of your choosing!</div>
+
+```{r color1, exercise = TRUE}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Age) + 
+  geom_point() + 
+  scale_color_manual(values = c("orchid4", "aquamarine3", "brown3"))
+```
+
+```{r color1-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Age) + 
+  geom_point() + 
+  # different colors are in the values argument:
+  scale_color_manual(values = c("hotpink", "chartreuse", "beige"))
+```
+
+
+<div class = "prompt">The three colors you supplied will be used _in order of the factor variable_ `Age`, which we can check with `levels()`:</div>
+
+```{r checklevels, exercise = TRUE}
+levels(sparrows$Age)
+```
+
+<div class = "prompt">Bearing in mind the default order of the factors, again use the function `scale_color_manual()` to set colors as...</div>
+
++ "Adult" should be "purple"
++ "Juvenile" should be "red"
++ "Young" should be "blue"
+
+```{r color2, exercise = TRUE}
+
+
+```
+
+```{r color2-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Age) + 
+  geom_point() + 
+  scale_color_manual(values = c("blue", "purple", "red"))
+```
+
+
+<div class = "prompt">Remake _Plot 2_ (remember you can copy the Plot 2 code down here to start!) with custom _fills_. Since we are now working with _fill aesthetic_, you need to use the function `scale_fill_manual()`. Choose your favorite three colors to use for the FILLS!!</div>
+
+```{r color3, exercise = TRUE}
+
+
+```
+
+```{r color3-solution}
+ggplot(sparrows) + 
+  aes(x = Age,
+      y = Wingspread,
+      fill = Age) + 
+  geom_violin() + 
+  scale_fill_manual(values = c("orchid4", "aquamarine3", "brown3"))
+```
+
+
+### Set 6.2: Specifying `brewer` colors and fills
+
+Rather than specifying custom colors or fills, we can use one of several _pre-existing palettes_. `ggplot2` comes with two popular palette frameworks: **brewer** scales and **viridis scales**. See what they look like [here](https://spielmanlab.github.io/introverse/articles/color_fill_scales.html#the-colorbrewer-and-viridis-palettes-1). For this section, you'll practice making some plots with the **brewer** scales.
+
+> Big note: Nobody expects you to memorize how to use all these scale color/fill functions!! Instead, you have the resources for figuring out which function you need for the plot you want to make and then how to use that function. It's all about engaging with resources for help - this is true for programmers at ANY level!
+
+
+
+
+<div class = "prompt">Remake _Plot 1_ using the **Dark2** `brewer` palette to color points by `Age`. You should use the function `scale_color_brewer()` for this, and provide the argument `palette = "Dark2"`.</div>
+
+
+```{r brewer1, exercise = TRUE}
+
+
+```
+
+```{r brewer1-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Age) + 
+  geom_point() + 
+  scale_color_brewer(palette = "Dark2")
+```
+
+
+<div class = "prompt">Remake _Plot 1_ again using the `brewer` palette to color points by `Age`, but this time choose your own favorite `brewer` palette instead of "Dark2"!</div>
+
+
+```{r brewer2, exercise = TRUE}
+
+
+```
+
+```{r brewer2-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Age) + 
+  geom_point() + 
+  scale_color_brewer(palette = "Pastel1")
+```
+
+
+<div class = "prompt">Remake _Plot 2_ twice, using TWO different palettes: `Set1` and `Reds` to get some practice. Since this plot uses a _fill aesthetic_, you will need to use the function `scale_fill_brewer()`.</div>
+
+
+```{r brewer3, exercise = TRUE}
+
+
+```
+
+```{r brewer3-solution}
+
+# Make with Set1 palette
+ggplot(sparrows) + 
+  aes(x = Age,
+      y = Wingspread,
+      fill = Age) + 
+  geom_violin() +
+  scale_fill_brewer(palette = "Set1")
+
+
+# Make with Reds palette
+ggplot(sparrows) + 
+  aes(x = Age,
+      y = Wingspread,
+      fill = Age) + 
+  geom_violin() +
+  scale_fill_brewer(palette = "Reds")
+```
+
+
+<div class = "prompt">Now, let's remake _Plot 3_, which contains a _continuous color mapping_, resulting in a gradient of point colors. The function to use for a _continuous color brewer scale_ is `scale_color_distiller()`, and we still supply it with the `palette` argument but we can only use one of the gradient color palettes (anything NOT Set3 - Accent). Remake Plot 3 using the red/purple called called `"RdPu"`.</div>
+
+
+```{r brewer4, exercise = TRUE}
+
+
+```
+
+```{r brewer4-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Wingspread) + 
+  geom_point() +
+  scale_color_distiller(palette = "RdPu")
+```
+
+
+<div class = "prompt">We can also reverse palettes by adding the argument `direction = 1` to the scale function. Remake the same _Plot3_ with `"RdPu"`, but also include this argument to see the palette flipped.</div>
+
+```{r brewer5, exercise = TRUE}
+
+
+```
+
+```{r brewer5-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Wingspread) + 
+  geom_point() +
+  scale_color_distiller(palette = "RdPu", direction = 1)
+```
+
+
+### Set 6.3: Specifying `viridis` colors and fills
+
+For this section, you'll practice making some plots with the **viridis** scales.
+
+> Again, Nobody expects you to memorize how to use all these scale color/fill functions!! Instead, we use the resources when we need them!
+
+
+<div class = "prompt">Remake _Plot 1_ using the default `viridis` palette to color points by `Age`. You should use the function `scale_color_viridis_d()` for this, since `Age` is **discrete**. Since we're using the default scale, no further arguments are needed.</div>
+
+
+```{r viridis1, exercise = TRUE}
+
+
+```
+
+```{r viridis1-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Age) + 
+  geom_point() + 
+  scale_color_viridis_d()
+```
+
+
+<div class = "prompt">Remake _Plot 1_ again using the `viridis` palette "magma". Again, we are mapping to `Age` so we should use `scale_color_viridis_d()`, but with the argument `option = "magma"` (not `palette`, but `option`!)</div>
+
+
+```{r viridis2, exercise = TRUE}
+
+
+```
+
+```{r viridis2-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Age) + 
+  geom_point() + 
+  scale_color_viridis_d(option = "magma")
+```
+
+
+<div class = "prompt">Remake _Plot 2_ twice, using TWO different palettes: `plasma` and `mako` to get some practice. Since this plot uses a _fill aesthetic_, you will need to use the function `scale_fill_viridis_d()` (still `_d` since still `Age`, still discrete!).</div>
+
+
+```{r viridis3, exercise = TRUE}
+
+
+```
+
+```{r viridis3-solution}
+
+# Make with plasma palette
+ggplot(sparrows) + 
+  aes(x = Age,
+      y = Wingspread,
+      fill = Age) + 
+  geom_violin() +
+  scale_fill_viridis_d(option = "plasma")
+
+
+# Make with mako palette
+ggplot(sparrows) + 
+  aes(x = Age,
+      y = Wingspread,
+      fill = Age) + 
+  geom_violin() +
+  scale_fill_viridis_d(option = "mako")
+```
+
+
+<div class = "prompt">Now, let's remake _Plot 3_, which contains a _continuous color mapping_, resulting in a gradient of point colors. The function to use for a _continuous color viridis scale_ is `scale_color_viridis_c()` where `_c` is for _continuous_. For this question, simply add on this function without any arguments to use the default `viridis` palette.</div>
+
+
+```{r viridis4, exercise = TRUE}
+
+
+```
+
+```{r viridis4-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Wingspread) + 
+  geom_point() +
+  scale_color_viridis_c()
+```
+
+
+
+<div class = "prompt">Now, again remake _Plot 3_ with the "inferno" palette, by including the `option` argument.</div>
+
+
+```{r viridis5, exercise = TRUE}
+
+
+```
+
+```{r viridis5-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Wingspread) + 
+  geom_point() +
+  scale_color_viridis_c(option = "inferno")
+```
+
+
+
+
+<div class = "prompt">We can also reverse palettes by adding the argument `direction = -1` (different from `brewer`! Booo!! Hence, always use resources cause this is tricky to memorize! Don't try to memorize!). Remake the same previous plot with "inferno" but also include this argument to see the palette flipped. .</div>
+
+```{r viridis6, exercise = TRUE}
+
+
+```
+
+```{r viridis6-solution}
+ggplot(sparrows) + 
+  aes(x = Wingspread,
+      y = Weight,
+      color = Wingspread) + 
+  geom_point() +
+  scale_color_viridis_c(option = "inferno", direction = -1)
+```
