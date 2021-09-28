@@ -219,7 +219,7 @@ summary(sparrows)</code></pre>
 <blockquote>
 <p>NOTE: These exercise code chunks don’t let you “tab in” lines. That’s ok! RStudio will let you perfectly fine. Don’t worry about tabs here :)</p>
 </blockquote>
-<p>Scatterplots show the <strong>relationship</strong> between two variables, and they use the <code>geom_point()</code> geometry as shown in this example where sparrow <code>Weight</code> is plotted <em>across</em> sparrow <code>Wingspread</code> (<em>Y goes across X</em>).</p>
+<p>Scatterplots show the <strong>relationship</strong> between two variables, and they use the <code>geom_point()</code> geometry as shown in this example where sparrow <code>Weight</code> is plotted <em>across</em> sparrow <code>Wingspread</code> (<em>y goes across x</em>).</p>
 <div class="tutorial-exercise" data-label="scatter_demo" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) + # Use the sparrows dataset
   aes(x = Wingspread, y = Weight) +  # Specify columns Wingspread and Weight to go on x and y axis. 
@@ -230,17 +230,17 @@ summary(sparrows)</code></pre>
 <ul>
 <li><code>color</code>: Color of points
 <ul>
-<li><em>Certain</em> types of points can also have a <code>fill</code>, and these are introduced in Set 2 of these exercises.</li>
+<li><em>Certain</em> types of points can also have a <code>fill</code>, and these are introduced in Set 5 (Scatterplots Part 2) of these exercises.</li>
 </ul></li>
 <li><code>size</code>: Size of points</li>
 <li><code>shape</code>: Shape of points</li>
 <li>For more, run <code>get_help("geom_point")</code> in a code chunk here to see the <code>introverse</code> docs.</li>
 </ul>
 <div class="prompt">
-Make a scatterplot of femur length across wingspread. Remember: This terminology means <em>Y across X</em>.
+Make a scatterplot of femur length (<code>Femur_Length</code>) across <code>Wingspread.</code>
 </div>
 <ul>
-<li>Hint: You may want to use the function <code>names()</code> to remind yourself what the relevant column names from the <code>sparrows</code> dataset are.</li>
+<li>Hint: Remember: This terminology means <em>y across x</em>:<code>Femur_Length</code> should be mapped to the y-axis, and <code>Wingspread</code> should be mapped to the x-axis.</li>
 </ul>
 <div class="tutorial-exercise" data-label="scatter_1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
@@ -251,10 +251,10 @@ Make a scatterplot of femur length across wingspread. Remember: This terminology
   geom_point() </code></pre>
 </div>
 <div class="prompt">
-Again make a scatterplot of femur length across wingspread, but make all points the color red.
+Again make a scatterplot of <code>Femur_Length</code> across <code>Wingspread</code>, but make all points the color red.
 </div>
 <ul>
-<li>Hint: This is simply coloring points, not mapping color to a variable. Just add the color argument to <code>geom_point()</code>. Colors MUST go in QUOTES - <code>"red"</code> (or <code>'red'</code>), NOT <code>red</code>.</li>
+<li>Hint: This is simply coloring points, not mapping color to a variable. Just add the color argument to <code>geom_point()</code>. Colors MUST go in QUOTES - “red” or ‘red’, NOT red.</li>
 </ul>
 <div class="tutorial-exercise" data-label="scatter_2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
@@ -265,37 +265,37 @@ Again make a scatterplot of femur length across wingspread, but make all points 
   geom_point(color = &quot;red&quot;) </code></pre>
 </div>
 <div class="prompt">
-Again make a scatterplot of femur length across wingspread, but this time color all points <em>based on survival status</em>.
+Again make a scatterplot of <code>Femur_Length</code> across <code>Wingspread</code>, but this time color all points <em>based on survival status</em>.
 </div>
 <ul>
-<li>Hint: This IS mapping a variable to a color, so you need to place your color argument <em>inside aes()</em>.</li>
+<li>Hint: This IS mapping a variable (specifically, <code>Survival</code>!) to a color, so you need to place your color argument <em>inside aes()</em>.</li>
 </ul>
 <div class="tutorial-exercise" data-label="scatter_3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="scatter_3-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) + 
-  aes(x = Wingspread, y = Femur_Length, color=Survival) +  
+  aes(x = Wingspread, y = Femur_Length, color = Survival) +  
   geom_point() </code></pre>
 </div>
 <p><br></p>
 <div id="section-alert" class="section level4">
 <h4><strong>ALERT!</strong></h4>
-<p>An <em>extremely common</em> bug/typo you can now look forward to doing for the rest of your life is accidentally placing a column <em>outside</em> of <code>aes()</code>. Here’s an example of that bug.</p>
+<p>An <em>extremely common</em> bug/typo you can now look forward to doing for the rest of your life is accidentally placing a column <em>outside</em> of <code>aes()</code>. Here’s an example of that bug - run the code to see how it produces a error! <em>There’s a bug here!</em></p>
 <div class="tutorial-exercise" data-label="scatter_sidenote" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) + 
   aes(x = Wingspread, y = Femur_Length) +  
-  geom_point(color=Survival) </code></pre>
+  geom_point(color = Survival) </code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":true,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="scatter_sidenote-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) + 
-  aes(x = Wingspread, y = Femur_Length, color=Survival) +  
+  aes(x = Wingspread, y = Femur_Length, color = Survival) +  
   geom_point() </code></pre>
 </div>
-<p><strong>What’s going on above exactly?</strong> <code>ggplot2</code> can only automatically know that you are referring to a column if it’s inside <code>aes()</code>. If it’s outside an <code>aes()</code>, R wants to find a variable with that name. But, <code>Survival</code> is not a variable on its own - it only exists as a column within <code>sparrows</code>. Try to change and re-run the code so that color is properly mapped to the variable <code>Survival</code>.</p>
+<p><strong>What’s going on above exactly?</strong> <code>ggplot2</code> can only automatically know that you are referring to a column if it’s inside <code>aes()</code>. If it’s outside an <code>aes()</code>, R wants to find a variable with that name. But, <code>Survival</code> is not a variable on its own - it only exists as a column within <code>sparrows</code>. <em>Try to modify and re-run the code so that color is properly mapped to the variable <code>Survival</code>.</em> (Hint: <code>color = Survival</code> must be an argument to <code>aes()</code>!).</p>
 <div class="prompt">
-Again make a scatterplot of femur length across wingspread, but this time color all points based on <em>weight</em> (make sure you are using the correct column name!). Unlike survival, weight is a <em>numeric continuous</em> variable so you’ll get a gradient of colors rather than a single discrete color for each survival category.
+Again make a scatterplot of femur length across wingspread, but this time color all points based on the <code>Weight</code> variable. Unlike <code>Survival</code>, <code>Weight</code> is a <em>numeric continuous</em> variable, so you’ll get a gradient of colors rather than a single discrete color for each survival category.
 </div>
 <div class="tutorial-exercise" data-label="scatter_4" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
@@ -306,10 +306,10 @@ Again make a scatterplot of femur length across wingspread, but this time color 
   geom_point() </code></pre>
 </div>
 <div class="prompt">
-Again make a scatterplot of femur length across wingspread, with points colored based on <em>weight</em>. But this time, let’s add some more professional labels to the plot using the <code>labs()</code> function.
+Again make a scatterplot of femur length across wingspread, with points colored based on <em>weight</em>. But this time, let’s add some more professional labels to the plot using the <code>labs()</code> function. The code below starts off the question for you by adding a custom label to the X axis. See it in action first before adding more labels!
 </div>
 <ul>
-<li>Learn more about this function from the <code>introverse</code> with this command: <code>get_help("labs")</code> (run it below!). Then, apply what you’ve learned to add the following labels to your plot:
+<li>You’ll need to more about this function from the <code>introverse</code> with this command: <code>get_help("labs")</code> (run it below, or see <a href="https://spielmanlab.github.io/introverse/introverse_docs/ggplot2_labs.html">here</a>). Then, apply what you’ve learned to add the following labels to your plot:
 <ul>
 <li>Y axis: “Femur Length (mm)”</li>
 <li>Title: “Scatterplot of sparrow wingspread and femur length”</li>
@@ -318,14 +318,14 @@ Again make a scatterplot of femur length across wingspread, with points colored 
 </ul>
 <div class="tutorial-exercise" data-label="scatter_5" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) + 
-  aes(x = Wingspread, y = Femur_Length, color=Weight) +  
+  aes(x = Wingspread, y = Femur_Length, color = Weight) +  
   geom_point() +
   labs(x = &quot;Wingspread (mm)&quot;)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="scatter_5-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) + 
-  aes(x = Wingspread, y = Femur_Length, color=Weight) +  
+  aes(x = Wingspread, y = Femur_Length, color = Weight) +  
   geom_point() +
   labs(x = &quot;Wingspread (mm)&quot;,
        y = &quot;Femur Length (mm)&quot;,
@@ -333,8 +333,8 @@ Again make a scatterplot of femur length across wingspread, with points colored 
 </div>
 <p><br></p>
 </div>
-<div id="section-pause-for-an-important-learning-opportunity" class="section level4">
-<h4><strong>PAUSE!</strong> for an important learning opportunity</h4>
+<div id="section-pause-for-an-important-lesson" class="section level3">
+<h3><strong>PAUSE!</strong> for an important lesson</h3>
 <p>Look at the solution code provided for the previous exercise. Below, I write the exact same code again, but <em>all on one line</em> (the text is “wrapped” in the window you see, so it appears on multiple lines but technically it is not!). As you will notice, it is <em>absolutely awful to try and read</em>. Even though the code is technically correct, it is <em>poorly organized</em>, making it extremely challenging to get any coherent sense of what the code is doing.</p>
 <pre class="r"><code>ggplot(sparrows) + aes(x = Wingspread, y = Femur_Length, color=Weight) +geom_point() + labs(x = &quot;Wingspread (mm)&quot;, y = &quot;Femur Length (mm)&quot;, title = &quot;Scatterplot of sparrow wingspread and femur length&quot;)</code></pre>
 <p>When crafting plots with <code>ggplot2</code>, it is <strong>strongly recommended (<em>yes, you will be graded on this</em>)</strong> to space out your code like the solutions demonstrate. Every time you add the next function, start a new line. Remember to keep the plus sign <code>+</code> at the END of a line! If you don’t end a line with the <code>+</code>, R will think the command is over - it won’t know to check if there’s a plus sign coming up. You’ll also notice in the <code>labs()</code> function, I separate arguments one line at a time, again making sure the comma falls at the END of a line and never at the beginning.</p>
@@ -417,13 +417,20 @@ Make a histogram of sparrow wingspread using <code>geom_histogram()</code>.
 <div class="tutorial-exercise-support" data-label="dist_1-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) +
   aes(x = Wingspread) +
+  geom_histogram()
+
+# This makes a horizontal histogram:
+ggplot(sparrows) +
+  aes(y = Wingspread) +
   geom_histogram()</code></pre>
 </div>
-<p>You will notice that <code>ggplot2</code> returns a <em>warning message</em> when you make histograms: “<code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.” This is an EXPECTED AND NORMAL message. It is <code>ggplot</code> telling you: I assumed there should be <em>30 bins</em> along your X-axis in your histogram. It suggests ONE way you can customize the binning: Using the argument <code>binwidth</code> to <code>geom_histogram()</code> to specify how wide along the X-axis a bin should be. Alternatively, can also use the argument <code>bins</code> to <code>geom_histogram()</code> to specify how many bins there should be (its default is 30! Get it?).</p>
+<p>You will notice that <code>ggplot2</code> returns a <em>message</em> (not an error!) when you make histograms: <br> <code>stat_bin()</code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>. <br> This is an EXPECTED AND NORMAL message. <code>ggplot2</code> is telling you: I assumed a default of <em>30 bins</em> along your X-axis in your histogram, but you should change this to something else if you want!</p>
+<p>The message suggests ONE way you can customize the binning: Using the argument <code>binwidth</code> with <code>geom_histogram()</code> to specify how wide along the X-axis a bin should be. Alternatively, you can use the argument <code>bins</code> with <code>geom_histogram()</code> to specify how many bins there should be (its default is 30! Get it?).</p>
 <div class="prompt">
 Re-create your histogram in five separate versions, each with a different specification to <code>binwidth</code>: 0.1, 1, 5, 10, and 20.
 </div>
 <ul>
+<li>Hint: To complete this question, make the same histogram as before except with the argument <code>binwidth = 0.1</code> provided to <code>geom_histogram()</code>. Make all the bin widths one at a time!</li>
 <li><em>Think about</em> which version(s) represent(s) the data well, and which version(s) is/are just terrible ideas.</li>
 <li>For an added challenge, also experiment with the <code>bins</code> argument instead of <code>binwidth</code>.</li>
 </ul>
@@ -456,9 +463,9 @@ ggplot(sparrows) +
   aes(x = Wingspread) +
   geom_histogram(binwidth = 20)</code></pre>
 </div>
-<p><br> This is really where variables start to become important: Let’s say you have some R code which creates 50 histograms, and you want 15 bins for all histograms (i.e., <code>geom_histogram(bins = 15)</code>). One option is to make all plots and write <code>15</code> for the argument. This works well..until you change your mind later and decide that maybe 12 would have been better. Rather than having to find and replace all <code>15</code>’s, we could just have a variable used in the code, and simply change the variable and have it automatically apply.</p>
+<p><br> This is really where using variables start to become important: Let’s say you have some R code which creates 50 histograms, and you want 15 bins for all histograms (i.e., <code>geom_histogram(bins = 15)</code>). One option is to make all plots and write <code>15</code> for the argument. This works well..until you change your mind later and decide that maybe 12 would have been better. Rather than having to find and replace all <code>15</code>’s, we could just have a variable used in the code, and simply change the variable and have it automatically apply.</p>
 <div class="prompt">
-Run the code below to see (<em>and understand</em>) this in action, and then <em>change</em> the <code>my_bins</code> variable to equal 5, and re-run the code with this new variable definition to see the change.
+Run the code below to practice using variables in this context. You’ll notice there are 15 bins in the resulting plot. Then, modify the code to <em>instead define</em> <code>my_bins &lt;- 5</code> (without touching the actual <code>ggplot2</code> code!), and re-run the chunk to see how there are now 5 bins.
 </div>
 <div class="tutorial-exercise" data-label="dist_3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>my_bins &lt;- 15
@@ -527,7 +534,7 @@ Now make a <em>density plot</em> of <code>Wingspread</code> using <code>geom_den
   geom_density(fill = &quot;palegreen4&quot;)</code></pre>
 </div>
 <div class="prompt">
-A common visualization feature we often use, especially in density plots, is to make colors <em>transparent.</em> To add transparency to colors, we can use the <code>alpha</code> argument <em>given directly to the relevant geom</em>. Values of alpha range from 0-1, where 0 is fully transparent and 1 is fully opaque. Add an alpha argument (along with a fill argument!) to <code>geom_density()</code> to practice this argument.
+A common visualization feature we often use, especially in density plots, is to make colors <em>transparent.</em> To add transparency to colors, we can use the <code>alpha</code> argument <em>given directly to the relevant geom</em>. Values of alpha range from 0-1, where 0 is fully transparent and 1 is fully opaque. Add an alpha argument (along with a fill argument!) to <code>geom_density()</code> to practice this argument. You might have to do some trial/error to find a good alpha value. Welcome to programming!
 </div>
 <ul>
 <li>Again, for an added challenge, make a variable to use for your <code>alpha</code> value.</li>
@@ -536,7 +543,13 @@ A common visualization feature we often use, especially in density plots, is to 
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="dist_6-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
-<pre class="text"><code>density_alpha &lt;- 0.6
+<pre class="text"><code>ggplot(sparrows) +
+  aes(x = Wingspread) +
+  geom_density(fill = &quot;palegreen4&quot;, alpha = 0.6) # Using 0.6 for example. Other alphas are not necessarily &quot;wrong&quot;!
+
+
+# With a variable:
+density_alpha &lt;- 0.6
 ggplot(sparrows) +
   aes(x = Wingspread) +
   geom_density(fill = &quot;palegreen4&quot;, alpha = density_alpha)</code></pre>
@@ -576,7 +589,7 @@ ggplot(sparrows) +
 Practice making more boxplots (and learning the principles of <code>ggplot2</code>) with the following tasks:
 </div>
 <ul>
-<li>Instead of “just” a fill, modify the Wingspread boxplot to fill distributions based on <code>Sex</code>.
+<li>Instead of “just” a fill, modify the previous boxplot to fill distributions based on <code>Sex</code>.
 <ul>
 <li>Hint: You’ll need to add another aesthetic mapping for <code>Sex</code> on top of what you already have.</li>
 </ul></li>
@@ -594,7 +607,7 @@ ggplot(sparrows) +
   aes(x = Sex, y = Wingspread, fill = Sex) +
   geom_boxplot()
 
-# The &quot;just blue&quot; fill will OVERRIDE aes(fill = Sex) - be careful!
+# The &quot;just blue&quot; fill will OVERRIDE aes(fill = Sex) - be careful!!!
 ggplot(sparrows) +
   aes(x = Sex, y = Wingspread, fill = Sex) +
   geom_boxplot(fill = &quot;blue&quot;)
@@ -657,7 +670,7 @@ ggplot(sparrows) +
   geom_jitter(width = 0.1, size = 3, alpha = 0.5)</code></pre>
 </div>
 <div class="prompt">
-Re-make the strip plot, but also color by <code>Survival</code> (inside <code>aes()</code>!). You’ll find a result somewhat to the boxplot version of this plot.
+Re-make the strip plot, but also color by <code>Survival</code> (inside <code>aes()</code>!). You’ll find a result similar to the boxplot version of this plot.
 </div>
 <ul>
 <li>Think: Why did I say color and not fill, as I did for boxplots and violin plots? You just thought: Ah, it’s because here, we have 1-dimensional points, which can only have a color, not fill.</li>
@@ -685,7 +698,7 @@ ggplot(sparrows) +
 Just as <code>ggplot2</code> is a real pal and does all the binning/counting for you when you call <code>geom_histogram()</code>, <code>ggplot2</code> will do all the barplot counting for you as well with the function <code>geom_bar()</code>. Use <code>geom_bar()</code> to make a barplot of the <code>Survival</code> counts.
 </div>
 <ul>
-<li>Hint: Survival belongs on the x-axis, and ggplot takes care of the y-axis for you.</li>
+<li>Hint: Survival belongs on the x-axis, and ggplot takes care of the y-axis for you. You only need an x-axis mapping and the <code>geom_bar()</code> geom!</li>
 </ul>
 <div class="tutorial-exercise" data-label="bar_1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
@@ -696,10 +709,10 @@ Just as <code>ggplot2</code> is a real pal and does all the binning/counting for
   geom_bar()</code></pre>
 </div>
 <div class="prompt">
-Customize your barplot by adding a color and fill of your choosing.
+Customize your barplot by adding a “just a” color and fill of your choosing.
 </div>
 <ul>
-<li>These are NOT mapped aesthetics. Simply provide a color and fill argument to <code>geom_bar()</code>.</li>
+<li>These are NOT mapped aesthetics. Simply provide color and fill arguments to <code>geom_bar()</code> using your favorite colors.</li>
 <li>You may also want to experiment with the <code>width</code> argument to <code>geom_bar()</code> to find a bar width that suits you (choose a number between 0-1), or a <code>size</code> argument to customize the size of bar outlines.</li>
 </ul>
 <div class="tutorial-exercise" data-label="bar_2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
@@ -708,7 +721,16 @@ Customize your barplot by adding a color and fill of your choosing.
 <div class="tutorial-exercise-support" data-label="bar_2-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) + 
   aes(x = Survival) +
-  geom_bar(color = &quot;forestgreen&quot;, fill = &quot;beige&quot;, width = 0.5)</code></pre>
+  geom_bar(color = &quot;forestgreen&quot;, 
+           fill = &quot;beige&quot;)
+
+# Experiment with size and width! Spielman did some trial and error and personally liked this - 
+ggplot(sparrows) + 
+  aes(x = Survival) +
+  geom_bar(color = &quot;forestgreen&quot;, 
+           fill = &quot;beige&quot;, 
+           width = 0.2, 
+           size = 0.75)</code></pre>
 </div>
 <div class="prompt">
 Again modify this barplot of <code>Survival</code>, but make the following changes:
@@ -760,14 +782,23 @@ For fun (so fun!), make it a <em>horizontal</em> barplot!! Simply change the <co
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="bar_7-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
-<pre class="text"><code>ggplot(sparrows) +
+<pre class="text"><code># Stacked and horizontal: 
+ggplot(sparrows) +
+  aes(y = Age, fill = Survival) +
+  geom_bar()
+
+# Dodged and horizontal:
+ggplot(sparrows) +
   aes(y = Age, fill = Survival) +
   geom_bar(position = position_dodge())</code></pre>
 </div>
 </div>
 <div id="section-set-4-changing-the-order-of-factors" class="section level2">
 <h2>Set 4: Changing the order of factors</h2>
-<p>The code below makes a scatterplot of femur length across wingspread with points colored by <em>Age</em>:</p>
+<blockquote>
+<p>These exercises will teach you a new skill that you will need for HW4 and more!</p>
+</blockquote>
+<p>The code below makes a scatterplot of femur length across wingspread with points colored by <em>Age</em>. Have a look at the code, run it, and make sure you are comfortable with the plot/code overall before proceeding. Otherwise, great time to pause and check in with Slack or Dr. Spielman!</p>
 <div class="tutorial-exercise" data-label="fct_demo" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) + 
   aes(x = Wingspread, 
@@ -776,19 +807,19 @@ For fun (so fun!), make it a <em>horizontal</em> barplot!! Simply change the <co
   geom_point()</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":5,"fig.height":3,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":480,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-<p>You’ll notice in the legend that the colors are ordered “Young”, “Adult”, “Juvenile”, “Young” - this is because the factor variable is in that order:</p>
+<p>You’ll notice in the legend that the colors are ordered “Young”, “Adult”, “Juvenile”, “Young” - this is because the factor variable is in that order. We can see the ordered categories, aka <em>levels</em>, of a factor variable with <code>levels()</code>. Run the code below to see the order of levels:</p>
 <div class="tutorial-exercise" data-label="fct_demo2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>levels(sparrows$Age)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
-<p>What if we wanted the order to be different and show the variables in biological order: “Juvenile”, “Young”, and finally “Adult” last? Hint: We do!! There are several strategies to accomplish this task, and we will learn how to do this using a function from the package <a href="https://forcats.tidyverse.org/reference/"><code>forcats</code></a>, a <code>tidyverse</code> package that helps change the order of a factor variable. The package name involves several puns, and the library has been pre-loaded for you in these exercises.</p>
-<p>We will use the function <code>fct_relevel()</code> from the <code>forcats</code> package, which you can always learn more about with <code>get_help("fct_relevel")</code>. Begin to see how this function works below - this demo code changes the <code>Age</code> levels to be in order “Juvenile”, “Young”, “Adult”. We provide two arguments - the variable to work with (the <code>Age</code> column), and an array with the new order we want. <em>Make sure to spell these categories precisely as they appear in the dataset!!</em></p>
+<p>What if we wanted the order to be different and show the <code>Age</code> variable in this (more reasonable) order: “Juvenile”, “Young”, and finally “Adult” last? There are several strategies to accomplish this task, and we will learn how to do this using a function from the package <a href="https://forcats.tidyverse.org/reference/">forcats</a>, a <code>tidyverse</code> package that helps change the order of a factor variable. The package name involves several puns, and the library has been pre-loaded for you in these exercises.</p>
+<p>We will use the function <code>fct_relevel()</code> from the <code>forcats</code> package, which you can always learn more about with <code>get_help("fct_relevel")</code> (scroll to BOTTOM of this page to see an example with a plot!). Begin to see how this function works below - this demo code changes the <code>Age</code> levels to be in order “Juvenile”, “Young”, “Adult”. We provide arguments in this order: First, the variable to work with (the <code>Age</code> column), and then just a bunch of strings representing the new order we want. <em>Make sure to spell these categories precisely as they appear in the dataset!!</em></p>
 <ul>
 <li>This code does not redefine the <code>Age</code> column since we aren’t assigning anything with <code>&lt;-</code>. It is simply showing us the output from performing such an operation. The data remains fully unchanged, the order of levels has changed to the order we provided - see the bottom of the output!</li>
 </ul>
 <div class="tutorial-exercise" data-label="fct_demo3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code># See how a new order for Levels: is printed at the end??
-fct_relevel(sparrows$Age, c(&quot;Juvenile&quot;, &quot;Young&quot;, &quot;Adult&quot;))</code></pre>
+fct_relevel(sparrows$Age, &quot;Juvenile&quot;, &quot;Young&quot;, &quot;Adult&quot;)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <p><br> We can actually use this function <em>directly inside of building a ggplot</em>!! Remember, when we make ggplots, we do not need to use dollar sign <code>sparrows$Age</code> notation - we can simply refer to <code>Age</code> since we have already specified using the <code>sparrows</code> dataset. <strong>Instead of just mapping color to <code>Age</code>, we map color to a releveled-on-the-fly <code>Age</code>!</strong></p>
@@ -796,7 +827,7 @@ fct_relevel(sparrows$Age, c(&quot;Juvenile&quot;, &quot;Young&quot;, &quot;Adult
 <pre class="text"><code>ggplot(sparrows) + 
   aes(x = Wingspread, 
       y = Femur_Length, 
-      color = fct_relevel(Age, c(&quot;Juvenile&quot;, &quot;Young&quot;, &quot;Adult&quot;)) 
+      color = fct_relevel(Age, &quot;Juvenile&quot;, &quot;Young&quot;, &quot;Adult&quot;)
     ) + # placing the closing aes() parentheses on this next line to make the above code easier to see.
   geom_point()</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
@@ -806,7 +837,8 @@ fct_relevel(sparrows$Age, c(&quot;Juvenile&quot;, &quot;Young&quot;, &quot;Adult
 <pre class="text"><code>ggplot(sparrows) + 
   aes(x = Wingspread, 
       y = Femur_Length, 
-      color = fct_relevel(Age, c(&quot;Juvenile&quot;, &quot;Young&quot;, &quot;Adult&quot;))) + # gotta really count those parentheses!
+      color = fct_relevel(Age, &quot;Juvenile&quot;, &quot;Young&quot;, &quot;Adult&quot;)
+      ) + 
   geom_point() + 
   labs(color = &quot;Sparrow age&quot;) # relabel the COLOR legend</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
@@ -821,7 +853,7 @@ Using the code above to practice manipulating factor order for plotting, make an
 <pre class="text"><code>ggplot(sparrows) + 
   aes(x = Wingspread, 
       y = Femur_Length, 
-      color = fct_relevel(Age, c(&quot;Adult&quot;, &quot;Young&quot;, &quot;Juvenile&quot;))
+      color = fct_relevel(Age, &quot;Adult&quot;, &quot;Young&quot;, &quot;Juvenile&quot;)
      ) + 
   geom_point() + 
   labs(color = &quot;Sparrow age&quot;) # relabel the COLOR legend</code></pre>
@@ -830,7 +862,10 @@ Using the code above to practice manipulating factor order for plotting, make an
 Engage with this new skill by making another scatterplot of femur length across wingspread, but this time, <em>map color to <code>Sex</code> but in order “Female” then “Male” instead of the default</em> (see the default for yourself by running <code>levels(sparrows$Sex)</code>!!). Make sure you also include a clean legend title!
 </div>
 <ul>
-<li>Start slow and build up! First, can you make this scatterplot in the default order? Then, can you modify the <code>aes()</code> argument to <code>color</code> to change that default order of <code>Sex</code>? Finally, can you add in the cleaner legend title?</li>
+<li>Start slow and build up! I recommend…</li>
+<li>First, can you make this scatterplot without worrying about the order?</li>
+<li>Then, can you modify the <code>aes()</code> argument to <code>color</code> to change that default order of <code>Sex</code>?</li>
+<li>Finally, can you add in the cleaner legend title?</li>
 </ul>
 <div class="tutorial-exercise" data-label="fct1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
@@ -839,20 +874,27 @@ Engage with this new skill by making another scatterplot of femur length across 
 <pre class="text"><code>ggplot(sparrows) + 
   aes(x = Wingspread, 
       y = Femur_Length, 
-      color= fct_relevel(Sex, c(&quot;Female&quot;, &quot;Male&quot;))) +  
+      color= fct_relevel(Sex, &quot;Female&quot;, &quot;Male&quot;)) +  
   geom_point() + 
   labs(color = &quot;Sparrow sex&quot;)</code></pre>
 </div>
 <div class="prompt">
 Make a <em>density plot</em> of the distribution of femur lengths, where <code>fill</code> is mapped to <code>Sex</code>, which again should be in order “Female” and then “Male.” To ensure a nice legend title, you’ll need to use the <code>fill</code> argument to labs, not color (since we are mapping a fill!)
 </div>
+<ul>
+<li>Again, start slow and build it up! <em>Run the code in between each step to BUILD IT UP SLOWLY!</em></li>
+<li>First, can you make a density plot of femur lengths?</li>
+<li>Second, can you map the fill to <code>Sex</code>?</li>
+<li>Third, can you change the Male/Female order?</li>
+<li>Finally, can you add a nicer legend title?</li>
+</ul>
 <div class="tutorial-exercise" data-label="fct2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="fct2-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) + 
   aes(x = Femur_Length, 
-      fill = fct_relevel(Sex, c(&quot;Female&quot;, &quot;Male&quot;))) +  
+      fill = fct_relevel(Sex, &quot;Female&quot;, &quot;Male&quot;)) +  
   geom_density(alpha = 0.5) + 
   labs(fill = &quot;Sparrow sex&quot;)</code></pre>
 </div>
@@ -860,7 +902,8 @@ Make a <em>density plot</em> of the distribution of femur lengths, where <code>f
 Now, make a <em>boxplot</em> of femur length across Sex, where boxplots are filled by <code>Sex</code> in the order “Male” then “Female”. This one is a little trickier, since we BOTH need to specify <code>Sex</code> on the x-axis <em>and</em> as the fill aesthetics. This means we need to use <code>fct_relevel()</code> twice. Run and understand this code for some learning to apply to the next question!
 </div>
 <ul>
-<li>Hint: Don’t forget that you know how to make a boxplot! We need <code>Femur_Length</code> on the Y-axis and <code>Sex</code> on the X-axis, and <code>Sex</code> mapped to <em>fill</em>.</li>
+<li>Start slow and build up, always and forever!</li>
+<li>Don’t forget that you know how to make a boxplot! We need <code>Femur_Length</code> on the y-axis and <code>Sex</code> on the x-axis, and <code>Sex</code> mapped to <em>fill</em>.</li>
 </ul>
 <div class="tutorial-exercise" data-label="fct3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
@@ -869,12 +912,12 @@ Now, make a <em>boxplot</em> of femur length across Sex, where boxplots are fill
 <pre class="text"><code>ggplot(sparrows) + 
   aes(x = Sex,
       y = Femur_Length,
-      fill = fct_relevel(Sex, c(&quot;Female&quot;, &quot;Male&quot;)))+
+      fill = fct_relevel(Sex, &quot;Female&quot;, &quot;Male&quot;))+
   geom_boxplot() +
   labs(fill = &quot;Sparrow sex&quot;)</code></pre>
 </div>
 <div class="prompt">
-In the previous boxplot, you’ll see because you changed the <code>fill</code> order, there is now a <em>different order</em> on the x-axis and in the legend! We want to keep this more consistent, so we need to <em>also</em> provide the whole <code>fct_relevel()</code> stuff as the X aesthetic argument, just like we do for fill.
+In the previous boxplot, you’ll see because you changed the <code>fill</code> order, there is now a <em>different order</em> on the x-axis and in the legend! We want to keep this more consistent, so we need to <em>also</em> provide the whole <code>fct_relevel()</code> stuff as the x-axis aesthetic argument, just like we do for fill.
 </div>
 <ul>
 <li>When you relevel an axis, the axis label ends up like garbage too! Make sure to clean up the x-axis label by adding an <code>x</code> argument to <code>labs()</code>!</li>
@@ -884,9 +927,9 @@ In the previous boxplot, you’ll see because you changed the <code>fill</code> 
 </div>
 <div class="tutorial-exercise-support" data-label="fct4-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code>ggplot(sparrows) + 
-  aes(x = fct_relevel(Sex, c(&quot;Female&quot;, &quot;Male&quot;)), 
+  aes(x = fct_relevel(Sex, &quot;Female&quot;, &quot;Male&quot;), 
       y = Femur_Length,
-      fill = fct_relevel(Sex, c(&quot;Female&quot;, &quot;Male&quot;)))+
+      fill = fct_relevel(Sex, &quot;Female&quot;, &quot;Male&quot;))+
   geom_boxplot() +
   labs(fill = &quot;Sparrow sex&quot;,
        x = &quot;Sparrow sex&quot;)</code></pre>
@@ -895,8 +938,8 @@ In the previous boxplot, you’ll see because you changed the <code>fill</code> 
 <div id="section-set-5-scatterplots-part-2" class="section level2">
 <h2>Set 5: Scatterplots, Part 2</h2>
 <p>Recall that we make scatterplots with <code>geom_point()</code>, and scatterplots are used to show the relationship between two x/y numeric values. In this second scatterplot lesson, we’ll learn some additional customization strategies for making scatterplots your own.</p>
-<p>Let’s play with point size and shape. <a href="http://www.sthda.com/english/wiki/r-plot-pch-symbols-the-different-point-shapes-available-in-r">This website</a> shows all the different shapes in R you can use - we specify them with numbers. (Note: this website shows some example plotting using a non-<code>ggplot2</code> approach. Ignore that. We only care about the point symbols!).</p>
-<p>You can also quickly see the point shapes by asking <code>introverse</code> for help with <code>geom_point()</code> with this code: <code>get_help("geom_point")</code>.</p>
+<p>Let’s play with point size and shape. Here are all the different shapes you can use for points when plotting in R, and we literally refer to them as their given number.</p>
+<p><img src="images/r_pch.png" width="300px" /></p>
 <div class="prompt">
 The plot below contains points of size 2 that are shaped like triangles, designated by shape <code>17</code> (see the shape links above!). First run and understand the template code. Then, modify the code to make the points size 3 and using shape 18 (diamond).
 </div>
@@ -915,7 +958,7 @@ The plot below contains points of size 2 that are shaped like triangles, designa
   geom_point(size = 3, shape = 18)</code></pre>
 </div>
 <div class="prompt">
-Shapes 21-25 are actually a little different from other shapes - they can be colored <em>and filled</em>. They are therefore like 2D points, so for these point shapes only color means <em>outline</em> and fill means <em>fill</em>. Re-make the scatterplot but specify shape = 21, and specify a color and fill of your choosing to <code>geom_point()</code> to see this in action.
+Shapes 21-25 are actually a little different from other shapes - they can be colored <em>and filled</em>. They are therefore like 2D points, so for these point shapes only color means <em>outline</em> and fill means <em>fill</em>. Re-make the scatterplot but specify shape = 21, and specify a color and fill of your choosing to <code>geom_point()</code> to see this in action. Customize the size based on your personal preference!!
 </div>
 <ul>
 <li>Don’t forget the magical PDF of all the <a href="https://github.com/sjspielman/datascience_for_biologists/raw/master/docs/tutorials/Rcolor.pdf">R colors</a> ! Have some fun :)</li>
@@ -932,7 +975,7 @@ Shapes 21-25 are actually a little different from other shapes - they can be col
 We can actually <em>save</em> plots as variables and re-use them! Because <code>ggplot2</code> is designed to keep adding plot components on top of one another, we can even add plot components on top of a plot. See it in action below!
 </div>
 <ul>
-<li>Hint: The assignment operator can be used in either direction, as long as it points to the <em>variable name</em>. <code>x &lt;- 7</code> and <code>7 -&gt; x</code> are both good!! <code>x -&gt; 7</code> is not :(</li>
+<li>Hint: The assignment operator can be used in either direction, as long as it points to the <em>variable name</em>. <code>x &lt;- 7</code> and <code>7 -&gt; x</code> are both good!! <code>x -&gt; 7</code> is not :(. Learn more with <code>get_help("assignment")</code>.</li>
 </ul>
 <div class="tutorial-exercise" data-label="scatter2_3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="20">
 <pre class="text"><code>ggplot(sparrows) + 
@@ -976,6 +1019,7 @@ Now, let’s add another geom! The function <code>geom_smooth()</code> can be us
 </div>
 <ul>
 <li>By default, <code>geom_smooth()</code> will include a 95% confidence interval, (statistical bands for the regression line).</li>
+<li>If you see a squiggly line, you have a bug! This is actually a different type of trendline called a “loess,” but we don’t want to plot that. We want a <em>line.</em> <strong>You must use the argument <code>method = "lm"</code> with <code>geom_smooth()</code> to get a <em>linear trendline</em>, like this: <code>geom_smooth(method = "lm")</code>.</strong></li>
 <li>You will see that <code>ggplot2</code> returns the message: “<code>geom_smooth()</code> using formula ‘y ~ x’”. This is NORMAL and EXPECTED: It is telling you the formula used to calculate the trendline. You can safely ignore it.</li>
 </ul>
 <div class="tutorial-exercise" data-label="scatter2_5" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
@@ -1029,8 +1073,8 @@ Let’s combine insights from the previous questions here: <em>How does <code>ae
 <li>Place the color aesthetic inside the <code>ggplot()</code> function, <em>along with</em> <code>x</code> and <code>y</code></li>
 <li>Place the color aesthetic inside the <code>geom_point()</code> function <em>only</em></li>
 <li>Place the color aesthetic inside the <code>geom_smooth()</code> function <em>only</em></li>
+<li>Hint: Don’t forget to actually put <code>color = Survival</code> inside of the <code>aes()</code> function, no matter where <code>aes()</code> is.</li>
 </ul>
-<p>(Hint: Don’t forget to actually put <code>color = Survival</code> inside of the <code>aes()</code> function, no matter its placement!!!!)</p>
 <blockquote>
 <p>Insights you gain from this question are CRITICAL to your understanding of <code>ggplot2</code>. Don’t take this question lightly! Spend some time, take some of your own notes, and ask me questions!</p>
 </blockquote>
@@ -1067,7 +1111,6 @@ Make one more version of this figure that contains the following features:
 </ul></li>
 <li><em>Size</em> all points based on <code>Weight</code> (Hint: use <code>size</code> as an aesthetic to map the given variable)</li>
 <li>Make all the points into shape 15</li>
-<li><strong>BONUS</strong>: Try changing the <a href="https://spielmanlab.github.io/introverse/articles/themes.html">theme</a></li>
 </ul>
 <p>Once the plot is made, think about these design choices. Just because one <em>can</em> add these visual features, does it mean one <em>should</em> add these visual features? (Answer: No.) Note: Some of the legend colors will come out funky - later, we will learn how to deal with this type of situation.</p>
 <div class="tutorial-exercise" data-label="scatter2_8" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
@@ -1080,17 +1123,7 @@ Make one more version of this figure that contains the following features:
     labs(x = &quot;Wingspread (mm)&quot;,
          y = &quot;Femur Length (mm)&quot;,
          title = &quot;Scatterplot of sparrow femur length across wingspread &quot;,
-         subtitle = &quot;Oh wow is this an ugly plot!&quot;)
-
-# With a new theme:
-ggplot(sparrows, aes(x = Wingspread, y = Femur_Length, color = Survival, size = Weight)) +  
-  geom_point(shape = 15) + 
-  geom_smooth(method = &quot;lm&quot;) +
-    labs(x = &quot;Wingspread (mm)&quot;,
-         y = &quot;Femur Length (mm)&quot;,
-         title = &quot;Scatterplot of sparrow femur length across wingspread &quot;,
-         subtitle = &quot;Oh wow is this an ugly plot!&quot;) +
-  theme_classic()</code></pre>
+         subtitle = &quot;Oh wow is this an ugly plot!&quot;)</code></pre>
 </div>
 </div>
 <div id="section-set-6-customizing-mapped-color-and-fill-palettes" class="section level2">
@@ -1840,7 +1873,7 @@ output$`tutorial-exercise-viridis6-output` <- renderUI({
 <!--/html_preserve-->
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","bslib","cellranger","cli","colorspace","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","ds4b.materials","ellipsis","evaluate","fansi","farver","fastmap","forcats","fs","generics","ggplot2","glue","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","htmlwidgets","httpuv","httr","introverse","jquerylib","jsonlite","knitr","labeling","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.2.1","4.0.5","0.7.9","0.3.0","1.1.0","3.0.1","2.0-2","4.0.5","1.4.1","4.0.5","1.1.1","2.1.1","0.6.27","1.0.7","0.0.0.9000","0.3.2","0.14","0.5.0","2.1.0","1.1.0","0.5.1","1.5.0","0.1.0","3.3.5","1.4.2","4.0.5","4.0.5","4.0.5","0.3.0","2.4.3","0.9","1.1.0","0.5.2","1.5.4","1.6.3","1.4.2","0.0.1","0.1.4","1.7.2","1.34","0.4.2","1.3.0","0.10.1","1.0.0","1.7.10","2.0.1","1.1","4.0.5","0.11","0.1.8","0.5.0","1.6.2","2.0.3","1.2.0.1","0.3.4","2.5.1","1.0.7","2.0.1","1.3.1","2.0.1","0.4.11","2.11","2.0.2","0.13","1.0.1","0.4.0","1.1.1","1.6.0","4.0.5","1.7.4","1.4.0","3.1.4","1.1.3","1.1.1","1.3.1","4.0.5","0.1.2","1.2.2","4.0.5","0.3.8","2.4.2","0.26","1.3.2","1.8-4","2.2.1"]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","bslib","cellranger","cli","colorspace","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","ds4b.materials","ellipsis","evaluate","fansi","farver","fastmap","forcats","fs","generics","ggplot2","glue","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","htmlwidgets","httpuv","httr","introverse","jquerylib","jsonlite","knitr","labeling","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.2.1","4.0.5","0.7.9","0.3.0","1.1.0","3.0.1","2.0-2","4.0.5","1.4.1","4.0.5","1.1.1","2.1.1","0.6.27","1.0.7","0.0.0.9000","0.3.2","0.14","0.5.0","2.1.0","1.1.0","0.5.1","1.5.0","0.1.0","3.3.5","1.4.2","4.0.5","4.0.5","4.0.5","0.3.0","2.4.3","0.9","1.1.0","0.5.2","1.5.4","1.6.3","1.4.2","0.0.1","0.1.4","1.7.2","1.34","0.4.2","1.3.0","0.10.1","1.0.0","1.7.10","2.0.1","1.1","4.0.5","0.11","0.1.8","0.5.0","1.6.2","2.0.3","1.2.0.1","0.3.4","2.5.1","1.0.7","2.0.1","1.3.1","2.0.1","0.4.11","2.11","2.0.2","0.13","1.0.1","0.4.0","1.1.1","1.7.0","4.0.5","1.7.4","1.4.0","3.1.4","1.1.3","1.1.1","1.3.1","4.0.5","0.1.2","1.2.2","4.0.5","0.3.8","2.4.2","0.26","1.3.2","1.8-4","2.2.1"]}]}]}
 </script>
 <!--/html_preserve-->
 </div>
