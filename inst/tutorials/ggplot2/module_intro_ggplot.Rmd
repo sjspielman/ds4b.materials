@@ -20,26 +20,6 @@ library(ds4b.materials)
 tutorial_options(exercise.lines = 8)
 ```
 
-## Background: The `ggplot2` package
-
-These exercises focus on making _reproducible_ figures using the `ggplot2` package, which is one of several [`tidyverse`](https://tidyverse.tidyverse.org/) packages. To obtain `ggplot2`, you will need to first _install_ the library, and then _load_ the library for use in your current R session. **The library has already been installed for you**, but IF you were to install it, here's what you would do!
-
-The command to install packages is `install.packages()` - you must provide package names _in quotes!_ to this function:
-```{r, eval=FALSE}
-install.packages("ggplot2")
-```
-You may see red text going down the console - don't worry! These are just messages indicating the stage of installation; they are not errors. **You only need to run package installation ONCE within a given RStudio Cloud space (or, once on your computer)**. Once it has been installed, you can use the package by loading it when needed.
-
-
-Once package installation completes, you can load packages for use with the `library()` function (quotes or no quotes, doesn't matter here):
-```{r, eval=FALSE}
-library(ggplot2)
-# or, library("ggplot2), or library('ggplot2')
-```
-
-**Again, this has already been run for you in these exercises. All libraries you need have been loaded.**
-
-
 ## Background: Exploring the data with R 
 
 All exercises here will use a pre-loaded dataset called `sparrows`. This dataset was collected in 1898 by Hermon Bumpus, an American biologist working at Brown University . Immediately following a bad winter storm, he collected 136 English house sparrows (some alive, some dead), *Passer domesticus*, and brought them indoors. Of these birds, 64 had died during the storm, but 72 recovered and survived. Bumpus measured the birds' physical traits (in mm or g) and recorded them for future generations of data science students.
