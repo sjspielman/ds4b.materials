@@ -168,7 +168,14 @@ ggplot(sparrows) +
 
 <div class = "prompt">Again make a scatterplot of `Femur_Length` across `Wingspread`, but this time color all points _based on survival status_.</div>
 
-+ Hint: This IS mapping a variable (specifically, `Survival`!) to a color, so you need to place your color argument _inside aes()_. 
++ Hint: This IS mapping a variable (specifically, `Survival`!) to a color, so you need to place your color argument _inside aes()_. Your plot should look like this:
+
+```{r scatter_3-show, echo=FALSE, fig.width = 4, fig.height = 3}
+ggplot(sparrows) + 
+  aes(x = Wingspread, y = Femur_Length, color = Survival) +  
+  geom_point() 
+```
+
 
 
 ```{r scatter_3, exercise = TRUE}
@@ -203,13 +210,22 @@ ggplot(sparrows) +
 
 <div class = "prompt">Again make a scatterplot of femur length across wingspread, but this time color all points based on the `Weight` variable. Unlike `Survival`, `Weight` is a *numeric continuous* variable, so you'll get a gradient of colors rather than a single discrete color for each survival category.</div>
 
+
++ Your plot should look like this:
+  
+  ```{r scatter_4-show, echo=FALSE, fig.width = 4, fig.height = 3}
+  ggplot(sparrows) + 
+    aes(x = Wingspread, y = Femur_Length, color=Weight) +  
+    geom_point() 
+  ```
+
 ```{r scatter_4, exercise = TRUE}
 
 ```
 
 ```{r scatter_4-solution}
 ggplot(sparrows) + 
-  aes(x = Wingspread, y = Femur_Length, color=Weight) +  
+  aes(x = Wingspread, y = Femur_Length, color = Weight) +  
   geom_point() 
 ```
 
@@ -451,7 +467,12 @@ ggplot(sparrows) +
 
 + Compare this plot and the previous plot carefully _in terms of their grammar_ to see why only adding the fill aesthetic accomplished the goal. The x-axis is still `Wingspread`, and the y-axis is still automatically calculated. Therefore, the only distinction between plots is the _fill_.
 + Using `alpha` is a really, really good idea here. If you don't use `alpha`, you can't fully see the distributions. It's such a good idea, that it's _required_. Use trial and error to find a good value between 0-1.
-+ You have now made an "overlapping density plot"!
++ You have now made an "overlapping density plot" which should look like this:
+```{r dist_7-show, echo=FALSE, fig.width = 4, fig.height = 3}
+ggplot(sparrows) +
+  aes(x = Wingspread, fill = Sex) +
+  geom_density(alpha = 0.6)
+```
 
 ```{r dist_7, exercise = TRUE}
 
@@ -465,7 +486,15 @@ ggplot(sparrows) +
 
 <div class = "prompt"> Moving on to *boxplots*: Make a boxplot of Wingspread for each Sex with `geom_boxplot()`, in other words, Wingspread _across_ Sex. Axes are not transformed values in boxplots, so you'll need to specify both an x and y variable.</div>
 
-+ Up your game right away! Can you add "just a fill" and/or "just a color"? Your plot, your choice!
++ Up your game right away! Can you add "just a fill" and/or "just a color"? Your plot, your choice! 
++ Your plot should look like this (but maybe with colors/fills of your choosing??) - 
+
+
+  ```{r dist_8-show, echo=FALSE, fig.width = 4, fig.height = 3}
+  ggplot(sparrows) +
+    aes(x = Sex, y = Wingspread) +
+    geom_boxplot()
+  ```
 
 
 ```{r dist_8, exercise = TRUE}
@@ -481,10 +510,19 @@ ggplot(sparrows) +
 
 <div class = "prompt"> Practice making more boxplots (and learning the principles of `ggplot2`) with the following tasks:</div>
 
-+ Instead of "just" a fill, modify the previous boxplot to fill distributions based on `Sex`.
-  + Hint: You'll need to add another aesthetic mapping for `Sex` on top of what you already have.
-+ Instead of filling by `Sex`, fill by `Survival`, but still keep `Sex` along the x-axis.
-  + *After you complete this plot*, really look at it carefully to understand how each aesthetic data mapping contributed to the plot. This is how you can make a *grouped boxplot*, and it all starts with applying the grammar of graphics.
++ Instead of "just" a fill, modify the previous boxplot to fill distributions based on `Sex`. To accomplish this, you'll need to remove the "just a fill" and include a fill mapping in `aes()`. It should look like this:
+
+  ```{r dist_9-show, echo=FALSE, fig.width = 4, fig.height = 3}
+  ggplot(sparrows) +
+    aes(x = Sex, y = Wingspread, fill = Sex) +
+    geom_boxplot()
+  ```
++ THEN, make another one!! Instead of filling by `Sex`, fill by `Survival`, but still keep `Sex` along the x-axis.
+  + *After you complete this plot*, really look at it carefully to understand how each aesthetic data mapping contributed to the plot. 
+
+_This is how you can make a *grouped boxplot*, and it all starts with applying the grammar of graphics._
+
+
   
 ```{r dist_9, exercise = TRUE}
 
@@ -533,6 +571,13 @@ ggplot(sparrows) +
 
 <div class = "prompt"> Let's now practice strip plots, also known as jitter plots since they "jitter" points along the x-axis. Use `geom_jitter()` to make a strip plot of `Wingspread` across `Sex`.</div>
 
++ Your plot should roughly look like this (but remember, jittering is random so it won't be identical!)
+  ```{r dist_11-show, echo=FALSE, fig.width = 4, fig.height = 3}
+  ggplot(sparrows) +
+    aes(x = Sex, y = Wingspread) +
+    geom_jitter(width = 0.2)
+  ```
+  
 + You may need to customize the _spacing_ of the points in the strip plot so that it is _totally unambiguous_ which point belongs to which x-axis category. You can do this with the argument `width` to `geom_jitter()`. I have personally found that 0.1-0.3 is usually a nice range for this argument.
 + You may want to change the size of points to make everything cleanly visible. Perhaps the plot would also benefit from some _transparency_ (`alpha`) to the points?
 + The "jittering" to the points is random, so every time you re-make the plot, the specific x-location of the points will change. 
@@ -565,6 +610,12 @@ ggplot(sparrows) +
 
 + Think: Why did I say color and not fill, as I did for boxplots and violin plots? You just thought: Ah, it's because here, we have 1-dimensional points, which can only have a color, not fill.
 + Make sure to check the jitter width. Think: Does it need to be tweaked for clear interpretation? You just thought: Definitely, I really need to tweak the width to find the "right" amount.
++ Your plot should roughly look like this (but remember, jittering is random so it won't be identical!)
+  ```{r dist_12-show, echo=FALSE, fig.width = 4, fig.height = 3}
+ggplot(sparrows) +
+  aes(x = Sex, y = Wingspread, color = Survival) +
+  geom_point(position = position_jitter(width = 0.1))
+  ```
 
 ```{r dist_12, exercise = TRUE}
 
@@ -632,6 +683,14 @@ ggplot(sparrows) +
 + Remove the "just a fill" argument, and...
 + Replace it with fill that is an *aesthetic mapping* to `Age`. 
 + You can keep or remove your color per your choice. In the end, you will have made a _grouped barplot_ jointly visualizing counts of Age and Survival.
++ Your plot should look like this:
+
+
+  ```{r bar_3-show, echo=FALSE, fig.width = 4, fig.height = 3}
+ggplot(sparrows) + 
+  aes(x = Survival, fill = Age) +
+  geom_bar()
+  ```
 
 ```{r bar_3, exercise = TRUE}
 
@@ -659,7 +718,7 @@ ggplot(sparrows) +
 
 <div class = "prompt"> By default, `ggplot2` makes "stacked" barplots when there are multiple groups. We can also show them "side-by-side", which is called "dodged", by straight-up adding this argument to `geom_bar()`: `position = position_dodge()`.</div>
 
-+ Hint: Literally all you need to do is, instead of writing `geom_bar()`, write it wit this extra argument: `geom_bar(position = position_dodge())`
++ Hint: Literally all you need to do is, instead of writing `geom_bar()`, write it like this with the argument: `geom_bar(position = position_dodge())`
 + Hint 2: Feeling fancy? Why not add just a color? Just a fill? A mapped color? A mapped fill? Have some fun with it :)
 + Hint 3: This is on HW4!
 
@@ -998,46 +1057,43 @@ ggplot(sparrows, aes(x = Wingspread, y = Femur_Length)) +
 
 ```
 
-<div class = "prompt"> Let's combine insights from the previous questions here: *How does `aes()` placement work when your plot has multiple geoms?* This time, we'd like to specify a color aesthetic for `Survival`. Re-build your plot with `geom_point()` and `geom_smooth()` with this aesthetic using three different placements for *the COLOR aes*. For all plots, place the `x` and `y` aesthetics in the initial `ggplot()` call.</div>
+<div class = "prompt"> Let's combine insights from the previous questions here: *How does `aes()` placement work when your plot has multiple geoms?* Below are shown several different versions of this code with the _aesthetic color mapping_ placed in different locations in the code. _Run and explore the code in each chunk to see the differences in the output, and THINK ABOUT the differences!_ Try to derive some insights here, and we'll regroup about it as a class.</div>
 
-+ Place the color aesthetic inside the `ggplot()` function, *along with* `x` and `y`
-+ Place the color aesthetic inside the `geom_point()` function *only*
-+ Place the color aesthetic inside the `geom_smooth()` function *only*
-+ Hint: Don't forget to actually put `color = Survival` inside of the `aes()` function, no matter where `aes()` is.
++ Seriosuly, insights you gain from these plots are CRITICAL to your understanding of `ggplot2`. Don't take this question lightly! Spend some time, take some of your own notes, and ask me questions!
 
-> Insights you gain from this question are CRITICAL to your understanding of `ggplot2`. Don't take this question lightly! Spend some time, take some of your own notes, and ask me questions!
-
-```{r scatter2_7, exercise=TRUE}
+```{r scatter2_7-1, exercise=TRUE}
+ggplot(sparrows) +
+  aes(x = Wingspread, y = Femur_Length, color = Survival) +
+  geom_point() + 
+  geom_smooth(method = "lm")
 
 ```
 
 
-```{r scatter2_7-solution}
-# color aes in initial ggplot call
-# BOTH geom_point and geom_smooth know about ("inherit") the color mapping
-ggplot(sparrows, aes(x = Wingspread, y = Femur_Length, color = Survival)) +
-  geom_point() + 
-  geom_smooth(method = "lm")
-
-# color aes in geom_point() call
-# ONLY geom_point inherits the color mapping. geom_smooth has no idea, so acts on data as a whole
-ggplot(sparrows, aes(x = Wingspread, y = Femur_Length)) +
+```{r scatter2_7-2, exercise=TRUE}
+ggplot(sparrows) +
+  aes(x = Wingspread, y = Femur_Length) +
   geom_point(aes(color = Survival)) + 
   geom_smooth(method = "lm")
 
-# color aes in geom_smooth() call
-# ONLY geom_smooth inherits the color mapping. geom_point has no idea, so all points are the same color (default black)
-ggplot(sparrows, aes(x = Wingspread, y = Femur_Length)) +
+```
+
+
+```{r scatter2_7-3, exercise=TRUE}
+ggplot(sparrows) +
+  aes(x = Wingspread, y = Femur_Length) +
   geom_point() + 
   geom_smooth(method = "lm", aes(color = Survival))
 ```
+
+
 
 
 <div class = "prompt">Make one more version of this figure that contains the following features:</div>
 
 + Clean and professional labels using `labs()`
 + *Color* all points based on `Survival`
-  + With an included *linear trendline* for EACH `Survival` level (make sure your aesthetic placement is appropriate!)
+  + With an included *linear trendline* for EACH `Survival` level (there should be two trendlines in the end)
 + *Size* all points based on `Weight` (Hint: use `size` as an aesthetic to map the given variable)
 + Make all the points into shape 15
 
