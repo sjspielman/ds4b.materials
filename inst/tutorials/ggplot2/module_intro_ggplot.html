@@ -183,22 +183,26 @@ summary(sparrows)</code></pre>
 </ul></li>
 <li>Plot geometries:
 <ul>
-<li>(Set 1,4) <code>geom_point()</code> for making points, usually for a scatterplot</li>
+<li>(Set 1,5) <code>geom_point()</code> for making points. Here, we only use <code>geom_point()</code> to make scatterplots, but this geom can be used to make points more generally also</li>
 <li>(Set 2) <code>geom_histogram()</code>, for making histograms</li>
 <li>(Set 2) <code>geom_density()</code>, for making density plots</li>
 <li>(Set 2) <code>geom_boxplot()</code>, for making boxplots</li>
 <li>(Set 2) <code>geom_jitter()</code>, for making strip/jitter plots</li>
 <li>(Set 2) <code>geom_violin()</code>, for making violin plots</li>
 <li>(Set 3) <code>geom_bar()</code>, for making bar plots that show counts of a categorical variable</li>
-<li>(Set 4 )<code>geom_smooth()</code>, for adding trendlines, usually to a scatterplot</li>
+<li>(Set 5) <code>geom_smooth()</code>, for adding trendlines, usually to a scatterplot</li>
 </ul></li>
 <li>Additional plot features:
 <ul>
 <li>(All sets) <code>labs()</code>, for adding/customizing labels to the plot</li>
-<li>(Set 5) <a href="https://spielmanlab.github.io/introverse/articles/color_fill_scales.html">This post</a> with functions for customizing mapped color/fill palettes.
+<li>(Set 6) <a href="https://spielmanlab.github.io/introverse/articles/color_fill_scales.html">This post</a> with functions for customizing mapped color/fill palettes.
 <ul>
 <li>Use any of these for more help: <code>get_help("scale_color_manual")</code>, <code>get_help("scale_color_brewer")</code>, or <code>get_help("scale_color_viridis_d")</code></li>
 </ul></li>
+</ul></li>
+<li>Factors:
+<ul>
+<li>(Set 4) <code>fct_relevel()</code> for changing the order of a factor variable</li>
 </ul></li>
 </ul>
 <p>You can use the <code>get_help()</code> function in <em>any code chunk</em> to get some help, which will open in another browser! Prefer point-and-click? Use <a href="https://spielmanlab.github.io/introverse/articles/introverse_online.html">this link</a> (but beware, there is a lot going on there…).</p>
@@ -345,7 +349,8 @@ ggplot(sparrows) + aes(x = Wingspread, y = Femur_Length) + geom_point()
 ## NO - this is a BUG in plotting code because you cannot start a line with +
 ggplot(sparrows) + 
   aes(x = Wingspread, y = Femur_Length) 
-  + geom_point()</code></pre>
+  + geom_point()
+</code></pre>
 </div>
 </div>
 <div id="section-set-2-visualizing-distributions" class="section level2">
@@ -505,7 +510,8 @@ ggplot(sparrows) +
   aes(x = Wingspread) +
   geom_histogram(color = hist_color, 
                  fill = hist_fill, 
-                 size = hist_line_size)</code></pre>
+                 size = hist_line_size)
+</code></pre>
 </div>
 <div class="prompt">
 Now make a <em>density plot</em> of <code>Wingspread</code> using <code>geom_density()</code>.
@@ -978,7 +984,8 @@ sparrow_wing_femur_plot
 
 # sparrow_wing_femur_plot + labs(x = &quot;OMG WE ADDED AN X-AXIS LABEL!&quot;)
 
-# Once you see how that works, add both x and y axis labels to the plot below in the space below to get a final plot</code></pre>
+# Once you see how that works, add both x and y axis labels to the plot below in the space below to get a final plot
+</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="scatter2_3-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
@@ -1004,7 +1011,7 @@ ggplot(sparrows) +
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="prompt">
-Now, let’s add another geom! The function <code>geom_smooth()</code> can be used to add a trendline to the plot, using one of several modeling options. To get a line of best fit (aka regression line), use the code <code>geom_smooth(method = "lm")</code>. Re-create your scatterplot (no colors or aesthetics besides x and y) but add (literally, add with <code>+</code>!) this geom to your plot to show the trendline for your data.
+Now, let’s add another geom! The function <code>geom_smooth()</code> can be used to add a trendline to the plot, using one of several modeling options. To get a line of best fit (aka regression line), use the code <code>geom_smooth(method = "lm")</code>. Re-create your scatterplot (no colors or aesthetics besides x and y) but add (<em>literally, add with <code>+</code>!</em>) this geom to your plot to show the trendline for your data.
 </div>
 <ul>
 <li>By default, <code>geom_smooth()</code> will include a 95% confidence interval, (statistical bands for the regression line).</li>
@@ -1032,7 +1039,8 @@ Let’s explore the <code>geom_smooth()</code> function further by modifying the
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="scatter2_6-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
-<pre class="text"><code># Without confidence bands
+<pre class="text"><code>
+# Without confidence bands
 ggplot(sparrows, aes(x = Wingspread, y = Femur_Length)) +
   geom_point() + 
   geom_smooth(method = &quot;lm&quot;, se = FALSE)
@@ -1053,7 +1061,8 @@ ggplot(sparrows, aes(x = Wingspread, y = Femur_Length)) +
 # If there&#39;s no confidence band, it doesn&#39;t matter if you specify a fill is - there&#39;s nothing to fill!
 ggplot(sparrows, aes(x = Wingspread, y = Femur_Length)) +
   geom_point() + 
-  geom_smooth(method = &quot;lm&quot;, se=FALSE, color = &quot;orange&quot;, fill = &quot;navy&quot;)</code></pre>
+  geom_smooth(method = &quot;lm&quot;, se=FALSE, color = &quot;orange&quot;, fill = &quot;navy&quot;)
+</code></pre>
 </div>
 <div class="prompt">
 Let’s combine insights from the previous questions here: <em>How does <code>aes()</code> placement work when your plot has multiple geoms?</em> This time, we’d like to specify a color aesthetic for <code>Survival</code>. Re-build your plot with <code>geom_point()</code> and <code>geom_smooth()</code> with this aesthetic using three different placements for <em>the COLOR aes</em>. For all plots, place the <code>x</code> and <code>y</code> aesthetics in the initial <code>ggplot()</code> call.
@@ -1249,7 +1258,8 @@ Remake <em>Plot 2</em> twice, using TWO different palettes: <code>Set1</code> an
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="brewer3-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
-<pre class="text"><code># Make with Set1 palette
+<pre class="text"><code>
+# Make with Set1 palette
 ggplot(sparrows) + 
   aes(x = Age,
       y = Wingspread,
@@ -1336,7 +1346,8 @@ Remake <em>Plot 2</em> twice, using TWO different palettes: <code>plasma</code> 
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="viridis3-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
-<pre class="text"><code># Make with plasma palette
+<pre class="text"><code>
+# Make with plasma palette
 ggplot(sparrows) + 
   aes(x = Age,
       y = Wingspread,
@@ -1862,7 +1873,7 @@ output$`tutorial-exercise-viridis6-output` <- renderUI({
 <!--/html_preserve-->
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","bslib","cellranger","cli","colorspace","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","ds4b.materials","ellipsis","evaluate","fansi","farver","fastmap","forcats","fs","generics","ggplot2","glue","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","htmlwidgets","httpuv","httr","introverse","jquerylib","jsonlite","knitr","labeling","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.2.1","4.0.5","0.7.9","0.3.0","1.1.0","3.0.1","2.0-2","4.0.5","1.4.1","4.0.5","1.1.1","2.1.1","0.6.28","1.0.7","0.0.0.9000","0.3.2","0.14","0.5.0","2.1.0","1.1.0","0.5.1","1.5.0","0.1.0","3.3.5","1.4.2","4.0.5","4.0.5","4.0.5","0.3.0","2.4.3","0.9","1.1.0","0.5.2","1.5.4","1.6.3","1.4.2","0.0.1","0.1.4","1.7.2","1.34","0.4.2","1.3.0","0.10.1","1.0.1","1.7.10","2.0.1","1.1","4.0.5","0.12","0.1.8","0.5.0","1.6.3","2.0.3","1.2.0.1","0.3.4","2.5.1","1.0.7","2.0.1","1.3.1","2.0.1","0.4.11","2.11","2.0.2","0.13","1.0.1","0.4.0","1.1.1","1.7.0","4.0.5","1.7.4","1.4.0","3.1.4","1.1.4","1.1.1","1.3.1","4.0.5","0.1.2","1.2.2","4.0.5","0.3.8","2.4.2","0.26","1.3.2","1.8-4","2.2.1"]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","bslib","cellranger","cli","colorspace","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","ds4b.materials","ellipsis","evaluate","fansi","farver","fastmap","forcats","fs","generics","ggplot2","glue","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","htmlwidgets","httpuv","httr","introverse","jquerylib","jsonlite","knitr","labeling","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.2.1","4.1.0","0.7.8","0.3.0","1.1.0","3.0.1","2.0-2","4.1.0","1.4.1","4.1.0","1.1.1","2.1.1","0.6.28","1.0.7","0.0.0.9000","0.3.2","0.14","0.5.0","2.1.0","1.1.0","0.5.1","1.5.0","0.1.0","3.3.5","1.4.2","4.1.0","4.1.0","4.1.0","0.3.0","2.4.1","0.9","1.1.0","0.5.2","1.5.4","1.6.3","1.4.2","0.0.0.9000","0.1.4","1.7.2","1.36","0.4.2","1.3.0","0.10.1","1.0.1","1.7.10","2.0.1","1.1","4.1.0","0.12","0.1.8","0.5.0","1.6.3","2.0.3","1.2.0.1","0.3.4","2.5.1","1.0.7","2.0.0","1.3.1","2.0.0","0.4.11","2.11","2.0.2","0.13","1.0.0","0.4.0","1.1.1","1.7.0","4.1.0","1.7.4","1.4.0","3.1.4","1.1.4","1.1.1","1.3.1","4.1.0","0.1.2","1.2.2","4.1.0","0.3.8","2.4.2","0.26","1.3.2","1.8-4","2.2.1"]}]}]}
 </script>
 <!--/html_preserve-->
 </div>

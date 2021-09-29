@@ -99,19 +99,21 @@ Don't forget to use the `introverse` library to help you! The library has been l
   + `ggplot()` for setting up the plot. To get help, `get_help("ggplot")` (with quotes!), and so on for the rest below...
   + `aes()` for _mapping_ variables to plot aesthetics
 + Plot geometries:
-  + (Set 1,4) `geom_point()` for making points, usually for a scatterplot
+  + (Set 1,5) `geom_point()` for making points. Here, we only use `geom_point()` to make scatterplots, but this geom can be used to make points more generally also
   + (Set 2) `geom_histogram()`, for making histograms
   + (Set 2) `geom_density()`, for making density plots
   + (Set 2) `geom_boxplot()`, for making boxplots
   + (Set 2) `geom_jitter()`, for making strip/jitter plots
   + (Set 2) `geom_violin()`, for making violin plots
   + (Set 3) `geom_bar()`, for making bar plots that show counts of a categorical variable
-  + (Set 4 )`geom_smooth()`, for adding trendlines, usually to a scatterplot
+  + (Set 5) `geom_smooth()`, for adding trendlines, usually to a scatterplot
 + Additional plot features:
   + (All sets) `labs()`, for adding/customizing labels to the plot
-  + (Set 5) [This post](https://spielmanlab.github.io/introverse/articles/color_fill_scales.html) with functions for customizing mapped color/fill palettes. 
+  + (Set 6) [This post](https://spielmanlab.github.io/introverse/articles/color_fill_scales.html) with functions for customizing mapped color/fill palettes. 
     + Use any of these for more help: `get_help("scale_color_manual")`, `get_help("scale_color_brewer")`, or `get_help("scale_color_viridis_d")`
-
++ Factors:
+  + (Set 4) `fct_relevel()` for changing the order of a factor variable
+  
 You can use the `get_help()` function in _any code chunk_ to get some help, which will open in another browser! Prefer point-and-click? Use [this link](https://spielmanlab.github.io/introverse/articles/introverse_online.html) (but beware, there is a lot going on there...).
 
 
@@ -937,7 +939,7 @@ ggplot(sparrows) +
 ```
 
 
-<div class = "prompt"> Now, let's add another geom! The function `geom_smooth()` can be used to add a trendline to the plot, using one of several modeling options. To get a line of best fit (aka regression line), use the code `geom_smooth(method = "lm")`. Re-create your scatterplot (no colors or aesthetics besides x and y) but add (literally, add with `+`!) this geom to your plot to show the trendline for your data. </div>
+<div class = "prompt"> Now, let's add another geom! The function `geom_smooth()` can be used to add a trendline to the plot, using one of several modeling options. To get a line of best fit (aka regression line), use the code `geom_smooth(method = "lm")`. Re-create your scatterplot (no colors or aesthetics besides x and y) but add (_literally, add with `+`!_) this geom to your plot to show the trendline for your data. </div>
 
 + By default, `geom_smooth()` will include a 95% confidence interval, (statistical bands for the regression line).
 + If you see a squiggly line, you have a bug! This is actually a different type of trendline called a "loess," but we don't want to plot that. We want a _line._ **You must use the argument `method = "lm"` with `geom_smooth()` to get a _linear trendline_, like this: `geom_smooth(method = "lm")`.**
