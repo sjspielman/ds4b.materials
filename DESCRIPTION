@@ -35,7 +35,6 @@ Imports:
     RCurl
 Collate:
     utils.R
-    launch_app.R
     launch_activity.R
     launch_homework.R
     check_homework.R
