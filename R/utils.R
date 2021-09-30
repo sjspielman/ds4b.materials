@@ -26,10 +26,6 @@ NULL
 #' @return The result of calling `rhs(lhs)`.
 NULL
 
-
-#' Path to apps
-app_path <- system.file("apps", package = "ds4b.materials")
-
 #' Path to activities
 activity_path <- system.file("inclass", package = "ds4b.materials")
 
@@ -66,8 +62,6 @@ This means your current environment will be DELETED.\n\n") %+%
         crayon::red("\n\nYou need to enter either 1 or 2.")))
     return (invisible(FALSE))
   }
-
-  remotes::install_github("sjspielman/types.of.plots", force = TRUE, quiet = TRUE)
   remotes::install_github("sjspielman/ds4b.materials", force = TRUE, quiet = TRUE)
   remotes::install_github("spielmanlab/introverse", force = TRUE, quiet = TRUE)
   cat("\n\n" %+%
