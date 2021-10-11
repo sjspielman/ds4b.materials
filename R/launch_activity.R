@@ -35,7 +35,7 @@ launch_activity <- function(choice = NULL)
     # Define
     activity_name <- dplyr::case_when(
       choice == "rmarkdown" ~ "demonstration_rmarkdown.Rmd",
-      choice == "paths" ~ "mammals_activity.zip"
+      choice == "paths" ~ "mammals_activity.zip",
       TRUE ~ ""
     )
     if(activity_name == "") stop()
