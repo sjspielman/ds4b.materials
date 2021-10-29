@@ -4,7 +4,9 @@ library(tidyverse)
 datapath <- "data-raw/datasets/"
 algae <- readr::read_csv(file.path(datapath, "algae.csv"))  
 biopsy <- readr::read_csv(file.path(datapath, "biopsy.csv")) 
+bodyfat <- readr::read_csv(file.path(datapath, "bodyfat.csv")) 
 birthwt <- readr::read_csv(file.path(datapath, "birthwt.csv"))
+crabs <- readr::read_csv(file.path(datapath, "crabs.csv"))
 damselfly <- readr::read_csv(file.path(datapath, "damselfly.csv"))
 olives <- readr::read_csv(file.path(datapath, "olives.csv")) 
 pima <- readr::read_csv(file.path(datapath, "pima.csv")) 
@@ -27,6 +29,17 @@ ToothGrowth %>%
 chickwts %>%
   mutate(chick_id = 1:n()) %>%
   as_tibble() -> chick_weights
+
+PlantGrowth %>%
+  as_tibble() -> plant_growth
+
+CO2 %>%
+  as_tibble() %>%
+  rename(plant_id = Plant,
+         origin = Type,
+         treatment = Treatment,
+         co2_concentration = conc,
+         co2_uptake_rate = uptake) -> cold_tolerance
 
 # tidy data paper data
 messy1 <- tibble::tribble(
@@ -57,6 +70,8 @@ tidy <- tibble::tribble(
 usethis::use_data(messy1, messy2, tidy, algae,
                   biopsy,
                   birthwt,
+                  crabs,
+                  bodyfat,
                   damselfly,
                   olives,
                   pima,
@@ -67,6 +82,8 @@ usethis::use_data(messy1, messy2, tidy, algae,
                   wine_version2,
                   pbta,
                   mammogram,
+                  plant_growth,
+                  cold_tolerance,
                   tooth_growth,
                   chick_weights,
                   overwrite = TRUE)

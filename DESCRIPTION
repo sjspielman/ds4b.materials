@@ -10,7 +10,7 @@ Description: This package provides the exercise apps and homeworks used in Data 
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: 
     ggplot2 (>= 0.3.5),
     tidyr (>= 1.0.0),
