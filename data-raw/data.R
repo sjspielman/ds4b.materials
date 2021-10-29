@@ -33,6 +33,10 @@ chickwts %>%
 PlantGrowth %>%
   as_tibble() -> plant_growth
 
+MASS::cats %>%
+  as_tibble() %>%
+  rename(sex = Sex, body_weight = Bwt, heart_weight = Hwt) -> domestic_cats
+
 CO2 %>%
   as_tibble() %>%
   rename(plant_id = Plant,
@@ -73,6 +77,7 @@ usethis::use_data(messy1, messy2, tidy, algae,
                   crabs,
                   bodyfat,
                   damselfly,
+                  domestic_cats,
                   olives,
                   pima,
                   urine,
