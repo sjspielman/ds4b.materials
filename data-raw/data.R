@@ -36,7 +36,8 @@ PlantGrowth %>%
 MASS::cats %>%
   as_tibble() %>%
   select(-Sex) %>%
-  rename(body_weight = Bwt, heart_weight = Hwt) -> domestic_cats
+  rename(body_weight = Bwt, heart_weight = Hwt) %>%
+  mutate(heart_weight = heart_weight/1000)-> domestic_cats
 
 CO2 %>%
   as_tibble() %>%
