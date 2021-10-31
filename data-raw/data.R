@@ -19,6 +19,7 @@ wine_version1 <- readr::read_csv(file.path(datapath, "wine_version1.csv"))
 wine_version2 <- readr::read_csv(file.path(datapath, "wine_version2.csv"))
 pbta <- readr::read_tsv(file.path(datapath,"pbta-histologies.tsv"), guess_max =1e5)
 mammogram <- readr::read_csv(file.path(datapath, "mammogram.csv"))
+seals <- readr::read_csv(file.path(datapath, "seals.csv"))
 
 
 
@@ -88,6 +89,7 @@ usethis::use_data(messy1, messy2, tidy, algae,
                   pima,
                   urine,
                   sparrows,
+                  seals,
                   wine,
                   wine_version1,
                   wine_version2,
