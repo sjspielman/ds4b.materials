@@ -37,6 +37,7 @@ MASS::cats %>%
   as_tibble() %>%
   select(-Sex) %>%
   rename(body_weight = Bwt, heart_weight = Hwt) %>%
+  distinct() %>%
   mutate(heart_weight = heart_weight/1000)-> domestic_cats
 
 CO2 %>%
