@@ -72,6 +72,9 @@ tidy <- tibble::tribble(
   "Mary Johnson", "b",1
 )
 
+bodyfat %>%
+  mutate(id = 1:n()) %>%
+  select(id, everything()) -> bodyfat
 
 
 usethis::use_data(messy1, messy2, tidy, algae,
