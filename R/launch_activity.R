@@ -18,7 +18,7 @@ If you think are getting this message in error, you might have a typo or used th
 #' @export
 launch_activity <- function(choice = NULL)
 {
-  allowed <- c("rmarkdown")
+  allowed <- c("rmarkdown", "linear_modeling", "logistic_regression")
   if (is.null(choice))
   {
     activity_choice_message()
@@ -35,6 +35,8 @@ launch_activity <- function(choice = NULL)
     # Define
     activity_name <- dplyr::case_when(
       choice == "rmarkdown" ~ "demonstration_rmarkdown.Rmd",
+      choice == "linear_modeling" ~ "linear_modeling.Rmd",
+      choice == "logistic_regression" ~ "logistic_regression.Rmd",
       TRUE ~ ""
     )
     if(activity_name == "") stop()
