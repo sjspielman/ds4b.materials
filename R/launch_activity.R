@@ -4,6 +4,8 @@ activity_choice_message <- function() {
   
   cat('You need to specify what activity you would like to run. Options are:
     - "rmarkdown"
+    - "linear_modeling"
+    - "logistic_regression"
 
 If you think are getting this message in error, you might have a typo or used the wrong case!'
   )  
