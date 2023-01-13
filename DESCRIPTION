@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Spielman",
            family = "Stephanie",
            role = c("aut", "cre"),
-           email = "spielman@rowan.edu")
+           email = "stephanie.spielman@gmail.com")
 Description: This package provides the exercise apps and homeworks used in Data Science for Biologists.
 Encoding: UTF-8
 LazyData: true
