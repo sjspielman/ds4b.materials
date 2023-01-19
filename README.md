@@ -1,4 +1,7 @@
 # ds4b.materials
+
+**This code is no longer maintained. No guarantees that anything works! File an issue or PR when something is borked.**
+
 _Packaged up_ [Data Science for Biologists](https://sjspielman.github.io/datascience_for_biologists/) student resources, including shiny applications, learnr modules, and functions for students to download and check their HW.
 
 Install this package with `remotes::install_github("sjspielman/ds4b.materials", force = TRUE)`. 
